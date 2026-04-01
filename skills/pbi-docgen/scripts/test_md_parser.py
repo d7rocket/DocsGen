@@ -102,7 +102,7 @@ The data sources connect to SQL Server via gateway.
         content1 = """## Project Overview
 Overview from file one.
 """
-        content2 = """## Data Model Summary
+        content2 = """## Data Model Details
 Data model from file two.
 """
         path1 = self._write_temp_file(content1)
