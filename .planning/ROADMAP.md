@@ -28,11 +28,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Only sections with actual source content appear in the document -- no blank pages or empty headings for missing sections
   4. M Query section renders audience-appropriate content: plain-English summaries for client audience, annotated code blocks for internal/IT
   5. English prose reads as clear, direct, and professional -- no filler, no padding, consistent with Fowler's guidance
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Skill scaffolding, reference files, utilities, and MD parser
+- [ ] 01-02-PLAN.md — SKILL.md intake wizard with dependency checking and validation
+- [ ] 01-03-PLAN.md — Content generation: Jinja2 prompt templates and claude -p integration
+- [ ] 01-04-PLAN.md — DOCX builder with branded cover page, headers, and formatting
+- [ ] 01-05-PLAN.md — Pipeline wiring (generate.py) and end-to-end verification
 
 ### Phase 2: PDF Pipeline + Output Integration
 **Goal**: User receives both .docx and .pdf from a single skill invocation, with the PDF rendered from styled HTML via Playwright and both documents including a navigable table of contents
@@ -69,6 +72,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Skill Core + Intake + DOCX | 0/2 | Not started | - |
+| 1. Skill Core + Intake + DOCX | 0/5 | Planned | - |
 | 2. PDF Pipeline + Output Integration | 0/2 | Not started | - |
 | 3. French Language + Polish | 0/1 | Not started | - |
