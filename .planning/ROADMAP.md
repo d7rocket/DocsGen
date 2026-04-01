@@ -46,11 +46,11 @@ Plans:
   2. The PDF renders with correct brand colors, embedded fonts, and clean page breaks (no split tables or orphaned code blocks)
   3. Both .docx and .pdf include a table of contents that reflects the auto-detected sections
   4. Output files follow the naming convention [ClientName]_[ReportName]_v[Version]_[YYYY-MM-DD] and the skill reports file paths and sizes on completion
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — DOCX TOC field, Jinja2 HTML template, and Playwright PDF builder module
+- [ ] 02-02-PLAN.md — Pipeline wiring (generate.py Stage 4) and SKILL.md dual-output update
 
 ### Phase 3: French Language + Polish
 **Goal**: User can generate documentation in French with correct PBI terminology and formal register, and both EN and FR output meet a professional quality bar suitable for direct client delivery
