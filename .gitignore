@@ -1,0 +1,4 @@
+docsgen-test/
+docsgen-output/
+__pycache__/
+*.pyc
