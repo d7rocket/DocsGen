@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-04-PLAN.md (Wave 2 complete)
-last_updated: "2026-04-01T18:46:32.480Z"
+stopped_at: Completed 01-05-PLAN.md (Phase 1 complete)
+last_updated: "2026-04-01T21:00:00.000Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 3
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 5
-  completed_plans: 4
-  percent: 0
+  completed_plans: 5
+  percent: 33
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 ## Current Position
 
-Phase: 01 (Skill Core + Intake + DOCX) — EXECUTING
-Plan: 4 of 5 complete (Wave 2 done)
-Status: Wave 2 complete, Wave 3 (checkpoint) next
-Last activity: 2026-04-01 -- Phase 01 Wave 2 complete
+Phase: 01 (Skill Core + Intake + DOCX) — COMPLETE
+Plan: 5 of 5 complete (all waves done)
+Status: Phase 1 complete, ready for Phase 2
+Last activity: 2026-04-01 -- Phase 01 Plan 05 complete, end-to-end verified
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [###░░░░░░░] 33%
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P02 | 16min | 1 task | 1 file |
 | Phase 01 P03 | 2m | 2 tasks | 8 files |
 | Phase 01 P04 | 2min | 1 task | 1 file |
+| Phase 01 P05 | 5min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Fowler rules included via Jinja2 include for DRY compliance across all section prompts
 - [Phase 01]: TABLE: and CODE_BLOCK: markers as conventions for DOCX builder to parse structured content from LLM output
 - [Phase 01]: Run-level RGBColor exclusively for heading colors; NEW parse_xml per cell for XML shading
+- [Phase 01]: generate.py uses stderr for progress, stdout for output path -- clean SKILL.md capture
+- [Phase 01]: Logo placement approved but noted for improvement in Phase 2 polish
 
 ### Pending Todos
 
@@ -80,9 +83,10 @@ None yet.
 
 - [Research]: python-docx heading style mutations fail silently -- must use run-level formatting from day one
 - [Research]: French PBI terminology glossary (30-50 terms) needs domain research during Phase 3
+- [User feedback]: Logo placement in .docx could be improved -- noted for Phase 2 polish
 
 ## Session Continuity
 
-Last session: 2026-04-01T18:46:32.477Z
-Stopped at: Completed 01-04-PLAN.md (Wave 2 complete)
+Last session: 2026-04-01T21:00:00.000Z
+Stopped at: Completed 01-05-PLAN.md (Phase 1 complete)
 Resume file: None
