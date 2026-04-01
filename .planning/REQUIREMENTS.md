@@ -27,13 +27,13 @@
 
 ### Content
 
-- [ ] **CONT-01**: Section 1 — Project overview + technical diagrams: generated from source overview content
-- [ ] **CONT-02**: Section 2 — Source systems & architecture: generated from source data connection / gateway content
-- [ ] **CONT-03**: Section 3 — Dataflows: generated from dataflow documentation (skipped if not present)
-- [ ] **CONT-04**: Section 4 — M Query business logic: plain-English summaries for client audience; annotated code blocks for internal/IT audience
-- [ ] **CONT-05**: Section 5 — Data model / SSAS: generated from model/table/relationship documentation
-- [ ] **CONT-06**: Section 6 — Troubleshooting, parameters & maintenance: generated from parameters and operational notes
-- [ ] **CONT-07**: English prose follows Fowler's *Modern English Usage* guidelines (clear, direct, no padding)
+- [x] **CONT-01**: Section 1 — Project overview + technical diagrams: generated from source overview content
+- [x] **CONT-02**: Section 2 — Source systems & architecture: generated from source data connection / gateway content
+- [x] **CONT-03**: Section 3 — Dataflows: generated from dataflow documentation (skipped if not present)
+- [x] **CONT-04**: Section 4 — M Query business logic: plain-English summaries for client audience; annotated code blocks for internal/IT audience
+- [x] **CONT-05**: Section 5 — Data model / SSAS: generated from model/table/relationship documentation
+- [x] **CONT-06**: Section 6 — Troubleshooting, parameters & maintenance: generated from parameters and operational notes
+- [x] **CONT-07**: English prose follows Fowler's *Modern English Usage* guidelines (clear, direct, no padding)
 - [ ] **CONT-08**: French prose follows La Grévisse guidelines (correct register, PBI-specific FR terminology applied via glossary)
 - [ ] **CONT-09**: Section headings, dates, and metadata formatted per selected language
 
@@ -101,13 +101,13 @@
 | PARSE-01 | Phase 1 | Complete |
 | PARSE-02 | Phase 1 | Complete |
 | PARSE-03 | Phase 1 | Complete |
-| CONT-01 | Phase 1 | Pending |
-| CONT-02 | Phase 1 | Pending |
-| CONT-03 | Phase 1 | Pending |
-| CONT-04 | Phase 1 | Pending |
-| CONT-05 | Phase 1 | Pending |
-| CONT-06 | Phase 1 | Pending |
-| CONT-07 | Phase 1 | Pending |
+| CONT-01 | Phase 1 | Complete |
+| CONT-02 | Phase 1 | Complete |
+| CONT-03 | Phase 1 | Complete |
+| CONT-04 | Phase 1 | Complete |
+| CONT-05 | Phase 1 | Complete |
+| CONT-06 | Phase 1 | Complete |
+| CONT-07 | Phase 1 | Complete |
 | CONT-08 | Phase 3 | Pending |
 | CONT-09 | Phase 3 | Pending |
 | DOCX-01 | Phase 1 | Pending |
