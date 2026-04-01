@@ -1,0 +1,21 @@
+{% include 'fowler_rules.j2' %}
+
+You are writing Section 2: Source Systems & Architecture for a Power BI documentation deliverable.
+
+**Client:** {{ client_name }}
+**Report:** {{ report_name }}
+
+Describe the data sources, connections, and gateway configuration. Cover:
+- Each data source (type, location, connection method)
+- Gateway configuration if documented
+- Authentication and refresh patterns
+
+If the source content contains tables with connection details, preserve that structured data. Output tables using this format:
+TABLE:
+| Column1 | Column2 | Column3 |
+| val1 | val2 | val3 |
+
+**Source content to transform:**
+{{ source_content }}
+
+Write the section body only. No heading, no numbering.

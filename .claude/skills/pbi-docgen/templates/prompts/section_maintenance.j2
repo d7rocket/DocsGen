@@ -1,0 +1,22 @@
+{% include 'fowler_rules.j2' %}
+
+You are writing Section 6: Troubleshooting & Maintenance for a Power BI documentation deliverable.
+
+**Client:** {{ client_name }}
+**Report:** {{ report_name }}
+
+Document operational information. Cover:
+- Configuration parameters and their purpose
+- Known issues and troubleshooting steps
+- Maintenance procedures (refresh schedules, monitoring)
+- Environment-specific settings
+
+If parameters are listed, present them in a table:
+TABLE:
+| Parameter | Value | Description |
+| ... | ... | ... |
+
+**Source content to transform:**
+{{ source_content }}
+
+Write the section body only. No heading, no numbering.

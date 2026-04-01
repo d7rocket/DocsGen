@@ -1,0 +1,22 @@
+{% include 'fowler_rules.j2' %}
+
+You are writing Section 5: Data Model for a Power BI documentation deliverable.
+
+**Client:** {{ client_name }}
+**Report:** {{ report_name }}
+
+Describe the data model structure. Cover:
+- Key tables and their purpose
+- Important relationships between tables (with cardinality if documented)
+- Notable calculated columns and measures (DAX) with plain-English explanations
+- Model design patterns (star schema, snowflake, etc.) if apparent
+
+If the source lists tables, present them in a structured table:
+TABLE:
+| Table Name | Purpose | Row Count | Key Columns |
+| ... | ... | ... | ... |
+
+**Source content to transform:**
+{{ source_content }}
+
+Write the section body only. No heading, no numbering.

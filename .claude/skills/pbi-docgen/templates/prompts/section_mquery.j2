@@ -1,0 +1,32 @@
+{% include 'fowler_rules.j2' %}
+
+You are writing Section 4: M Query Business Logic for a Power BI documentation deliverable.
+
+**Client:** {{ client_name }}
+**Report:** {{ report_name }}
+**Audience:** {{ audience }}
+
+{% if audience == "client" %}
+Write a plain-English summary of what each M Query does in business terms.
+Do NOT include raw M code. Explain transformations as business operations
+(e.g., "filters sales data to the current fiscal year" not "Table.SelectRows(Source, each [Year] >= 2024)").
+Group related queries together. Focus on what the data transformations accomplish for the business.
+{% else %}
+For each M Query, provide:
+1. A one-sentence business purpose
+2. The annotated M code with inline comments explaining each significant step
+3. Any dependencies on other queries or parameters
+
+Format code blocks with CODE_BLOCK markers:
+CODE_BLOCK:
+```
+// annotated M code here
+```
+
+This tells the document builder to use code formatting (Courier New, grey background).
+{% endif %}
+
+**Source content to transform:**
+{{ source_content }}
+
+Write the section body only. No heading, no numbering.
