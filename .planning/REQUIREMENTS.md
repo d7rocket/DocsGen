@@ -10,14 +10,14 @@
 - [x] **SCAF-01**: Skill works from any directory (not tied to a PBI project folder)
 - [x] **SCAF-02**: Skill creates `docsgen-assets/` subfolder structure (`logos/`, `source/`) on first run and guides user to populate it
 - [x] **SCAF-03**: Skill follows Claude Code skill conventions (SKILL.md with YAML frontmatter + `scripts/` + `templates/` + `references/`)
-- [ ] **SCAF-04**: Skill detects missing Python dependencies (python-docx, Playwright) and surfaces clear installation instructions before failing
+- [x] **SCAF-04**: Skill detects missing Python dependencies (python-docx, Playwright) and surfaces clear installation instructions before failing
 
 ### Intake
 
-- [ ] **INTAK-01**: Skill prompts step-by-step for all required inputs: source MD file(s), client name, client logo, company logo, primary color, accent color, language (EN/FR), audience type (internal/client/IT), report name, version number
-- [ ] **INTAK-02**: Language selection (EN or FR) asked every run — not cached
-- [ ] **INTAK-03**: Skill validates all required assets are present in `docsgen-assets/` before proceeding to generation; surfaces a clear checklist of missing items if anything is absent
-- [ ] **INTAK-04**: Output folder created automatically under working directory (e.g., `docsgen-output/`) — user does not need to create it
+- [x] **INTAK-01**: Skill prompts step-by-step for all required inputs: source MD file(s), client name, client logo, company logo, primary color, accent color, language (EN/FR), audience type (internal/client/IT), report name, version number
+- [x] **INTAK-02**: Language selection (EN or FR) asked every run — not cached
+- [x] **INTAK-03**: Skill validates all required assets are present in `docsgen-assets/` before proceeding to generation; surfaces a clear checklist of missing items if anything is absent
+- [x] **INTAK-04**: Output folder created automatically under working directory (e.g., `docsgen-output/`) — user does not need to create it
 
 ### Parsing
 
@@ -93,11 +93,11 @@
 | SCAF-01 | Phase 1 | Complete |
 | SCAF-02 | Phase 1 | Complete |
 | SCAF-03 | Phase 1 | Complete |
-| SCAF-04 | Phase 1 | Pending |
-| INTAK-01 | Phase 1 | Pending |
-| INTAK-02 | Phase 1 | Pending |
-| INTAK-03 | Phase 1 | Pending |
-| INTAK-04 | Phase 1 | Pending |
+| SCAF-04 | Phase 1 | Complete |
+| INTAK-01 | Phase 1 | Complete |
+| INTAK-02 | Phase 1 | Complete |
+| INTAK-03 | Phase 1 | Complete |
+| INTAK-04 | Phase 1 | Complete |
 | PARSE-01 | Phase 1 | Complete |
 | PARSE-02 | Phase 1 | Complete |
 | PARSE-03 | Phase 1 | Complete |

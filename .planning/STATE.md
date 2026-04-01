@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-04-01T18:38:20.579Z"
-last_activity: 2026-04-01 -- Phase 01 Wave 1 executing
+stopped_at: Completed 01-02-PLAN.md (Wave 1 complete)
+last_updated: "2026-04-01T18:39:21.816Z"
+last_activity: 2026-04-01 -- Phase 01 Wave 1 complete
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 ## Current Position
 
 Phase: 01 (Skill Core + Intake + DOCX) — EXECUTING
-Plan: 1 of 5 complete
-Status: Wave 1 executing
-Last activity: 2026-04-01 -- Phase 01 Wave 1 executing
+Plan: 2 of 5 complete (Wave 1 done)
+Status: Wave 1 complete, Wave 2 executing
+Last activity: 2026-04-01 -- Phase 01 Wave 1 complete
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01 P01 | 15m | 3 tasks | 6 files |
+| Phase 01 P02 | 16min | 1 task | 1 file |
 
 ## Accumulated Context
 
@@ -64,7 +65,7 @@ Recent decisions affecting current work:
 - [Roadmap]: DOCX before PDF -- validates content pipeline with fewer moving parts (no Playwright dependency)
 - [Roadmap]: English before French -- EN is simpler case; FR glossary pattern designed in but implemented Phase 3
 - [Research]: python-docx run-level formatting (not style mutation) to avoid silent heading style failures
-- [Phase 01]: Keyword matching uses first-match priority from YAML ordering; skill files deployed to both ~/.claude/skills/ (runtime) and repo skills/ (version control)
+- [Phase 01]: Keyword matching uses first-match priority from YAML ordering; skill files deployed to both ~/.claude/skills/ (runtime) and .claude/skills/ (repo) for dual discovery
 
 ### Pending Todos
 
@@ -77,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T18:38:20.576Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-04-01T18:39:21.813Z
+Stopped at: Completed 01-02-PLAN.md (Wave 1 complete)
 Resume file: None
