@@ -88,47 +88,45 @@
 
 ## Traceability
 
-*(Populated by roadmapper)*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SCAF-01 | — | Pending |
-| SCAF-02 | — | Pending |
-| SCAF-03 | — | Pending |
-| SCAF-04 | — | Pending |
-| INTAK-01 | — | Pending |
-| INTAK-02 | — | Pending |
-| INTAK-03 | — | Pending |
-| INTAK-04 | — | Pending |
-| PARSE-01 | — | Pending |
-| PARSE-02 | — | Pending |
-| PARSE-03 | — | Pending |
-| CONT-01 | — | Pending |
-| CONT-02 | — | Pending |
-| CONT-03 | — | Pending |
-| CONT-04 | — | Pending |
-| CONT-05 | — | Pending |
-| CONT-06 | — | Pending |
-| CONT-07 | — | Pending |
-| CONT-08 | — | Pending |
-| CONT-09 | — | Pending |
-| DOCX-01 | — | Pending |
-| DOCX-02 | — | Pending |
-| DOCX-03 | — | Pending |
-| DOCX-04 | — | Pending |
-| DOCX-05 | — | Pending |
-| PDF-01 | — | Pending |
-| PDF-02 | — | Pending |
-| PDF-03 | — | Pending |
-| OUT-01 | — | Pending |
-| OUT-02 | — | Pending |
-| OUT-03 | — | Pending |
+| SCAF-01 | Phase 1 | Pending |
+| SCAF-02 | Phase 1 | Pending |
+| SCAF-03 | Phase 1 | Pending |
+| SCAF-04 | Phase 1 | Pending |
+| INTAK-01 | Phase 1 | Pending |
+| INTAK-02 | Phase 1 | Pending |
+| INTAK-03 | Phase 1 | Pending |
+| INTAK-04 | Phase 1 | Pending |
+| PARSE-01 | Phase 1 | Pending |
+| PARSE-02 | Phase 1 | Pending |
+| PARSE-03 | Phase 1 | Pending |
+| CONT-01 | Phase 1 | Pending |
+| CONT-02 | Phase 1 | Pending |
+| CONT-03 | Phase 1 | Pending |
+| CONT-04 | Phase 1 | Pending |
+| CONT-05 | Phase 1 | Pending |
+| CONT-06 | Phase 1 | Pending |
+| CONT-07 | Phase 1 | Pending |
+| CONT-08 | Phase 3 | Pending |
+| CONT-09 | Phase 3 | Pending |
+| DOCX-01 | Phase 1 | Pending |
+| DOCX-02 | Phase 1 | Pending |
+| DOCX-03 | Phase 1 | Pending |
+| DOCX-04 | Phase 1 | Pending |
+| DOCX-05 | Phase 2 | Pending |
+| PDF-01 | Phase 2 | Pending |
+| PDF-02 | Phase 2 | Pending |
+| PDF-03 | Phase 2 | Pending |
+| OUT-01 | Phase 2 | Pending |
+| OUT-02 | Phase 2 | Pending |
+| OUT-03 | Phase 2 | Pending |
 
 **Coverage:**
 - v1 requirements: 31 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 31 ⚠️
+- Mapped to phases: 31
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-01*
-*Last updated: 2026-04-01 after initial definition*
+*Last updated: 2026-04-01 after roadmap creation*
