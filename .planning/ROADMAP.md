@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [ ] 01-01-PLAN.md — Skill scaffolding, reference files, utilities, and MD parser
-- [ ] 01-02-PLAN.md — SKILL.md intake wizard with dependency checking and validation
+- [x] 01-02-PLAN.md — SKILL.md intake wizard with dependency checking and validation
 - [ ] 01-03-PLAN.md — Content generation: Jinja2 prompt templates and claude -p integration
 - [ ] 01-04-PLAN.md — DOCX builder with branded cover page, headers, and formatting
 - [ ] 01-05-PLAN.md — Pipeline wiring (generate.py) and end-to-end verification
