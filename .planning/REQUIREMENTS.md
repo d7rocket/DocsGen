@@ -7,9 +7,9 @@
 
 ### Scaffold
 
-- [ ] **SCAF-01**: Skill works from any directory (not tied to a PBI project folder)
-- [ ] **SCAF-02**: Skill creates `docsgen-assets/` subfolder structure (`logos/`, `source/`) on first run and guides user to populate it
-- [ ] **SCAF-03**: Skill follows Claude Code skill conventions (SKILL.md with YAML frontmatter + `scripts/` + `templates/` + `references/`)
+- [x] **SCAF-01**: Skill works from any directory (not tied to a PBI project folder)
+- [x] **SCAF-02**: Skill creates `docsgen-assets/` subfolder structure (`logos/`, `source/`) on first run and guides user to populate it
+- [x] **SCAF-03**: Skill follows Claude Code skill conventions (SKILL.md with YAML frontmatter + `scripts/` + `templates/` + `references/`)
 - [ ] **SCAF-04**: Skill detects missing Python dependencies (python-docx, Playwright) and surfaces clear installation instructions before failing
 
 ### Intake
@@ -21,9 +21,9 @@
 
 ### Parsing
 
-- [ ] **PARSE-01**: Skill reads source Markdown files produced by the existing `pbi:docs` skill — no PBIP/PBIX parsing
-- [ ] **PARSE-02**: Section auto-detection: identifies which of the 6 documentation sections have content in the source MD
-- [ ] **PARSE-03**: Sections with no source content are silently skipped — no blank pages, no empty headings in output
+- [x] **PARSE-01**: Skill reads source Markdown files produced by the existing `pbi:docs` skill — no PBIP/PBIX parsing
+- [x] **PARSE-02**: Section auto-detection: identifies which of the 6 documentation sections have content in the source MD
+- [x] **PARSE-03**: Sections with no source content are silently skipped — no blank pages, no empty headings in output
 
 ### Content
 
@@ -90,17 +90,17 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SCAF-01 | Phase 1 | Pending |
-| SCAF-02 | Phase 1 | Pending |
-| SCAF-03 | Phase 1 | Pending |
+| SCAF-01 | Phase 1 | Complete |
+| SCAF-02 | Phase 1 | Complete |
+| SCAF-03 | Phase 1 | Complete |
 | SCAF-04 | Phase 1 | Pending |
 | INTAK-01 | Phase 1 | Pending |
 | INTAK-02 | Phase 1 | Pending |
 | INTAK-03 | Phase 1 | Pending |
 | INTAK-04 | Phase 1 | Pending |
-| PARSE-01 | Phase 1 | Pending |
-| PARSE-02 | Phase 1 | Pending |
-| PARSE-03 | Phase 1 | Pending |
+| PARSE-01 | Phase 1 | Complete |
+| PARSE-02 | Phase 1 | Complete |
+| PARSE-03 | Phase 1 | Complete |
 | CONT-01 | Phase 1 | Pending |
 | CONT-02 | Phase 1 | Pending |
 | CONT-03 | Phase 1 | Pending |
