@@ -41,6 +41,15 @@ def check_dependencies() -> bool:
                 file=sys.stderr,
             )
             all_ok = False
+    # Playwright is required for Phase 2 PDF output (non-blocking for Phase 1 DOCX)
+    try:
+        __import__("playwright")
+    except ImportError:
+        print(
+            "Note: playwright not installed. Required for PDF output (Phase 2). "
+            "Install with: pip install playwright==1.58.0 && playwright install chromium",
+            file=sys.stderr,
+        )
     return all_ok
 
 
