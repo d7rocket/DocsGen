@@ -49,6 +49,7 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 - **Python:** Output generation requires Python (python-docx) and Node (Playwright) or equivalent — skill must check for these and surface clear errors
 - **Asset folder:** User must populate `docsgen-assets/` before generation; skill guides them through what's needed
 - **Language:** Per-run language selection — EN or FR, not both simultaneously
+- **Quality bar:** Output must look clean and professional — suitable for direct client delivery without post-processing in Word. Typography, spacing, color application, and layout must be intentional and polished.
 
 ## Key Decisions
 
