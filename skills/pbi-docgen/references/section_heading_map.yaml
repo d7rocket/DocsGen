@@ -1,0 +1,21 @@
+# Maps ## heading keywords to section categories (D-11)
+# Keywords are matched case-insensitively against ## headings in source MD
+sections:
+  - id: overview
+    label: "Project Overview"
+    keywords: ["overview", "summary", "introduction", "about"]
+  - id: sources
+    label: "Source Systems & Architecture"
+    keywords: ["data source", "gateway", "connection", "source system", "architecture"]
+  - id: dataflows
+    label: "Dataflows"
+    keywords: ["dataflow", "data flow", "refresh", "pipeline"]
+  - id: mquery
+    label: "M Query Business Logic"
+    keywords: ["m query", "power query", "m code", "query", "transformation"]
+  - id: datamodel
+    label: "Data Model"
+    keywords: ["data model", "ssas", "relationship", "table", "measure", "dax", "column"]
+  - id: maintenance
+    label: "Troubleshooting & Maintenance"
+    keywords: ["parameter", "troubleshooting", "maintenance", "configuration", "setting"]
