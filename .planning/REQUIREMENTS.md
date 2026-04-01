@@ -39,10 +39,10 @@
 
 ### DOCX Output
 
-- [ ] **DOCX-01**: `.docx` file generated via python-docx with all auto-detected sections, headings, paragraphs, tables, and code blocks
-- [ ] **DOCX-02**: Cover page includes: client name, report name, version, date, client logo, company logo
-- [ ] **DOCX-03**: Primary and accent colors applied consistently to headings, table headers, and accent elements — using run-level formatting (not style mutation)
-- [ ] **DOCX-04**: Header/footer on all pages with page numbers; cover page uses different first-page header with dual logos
+- [x] **DOCX-01**: `.docx` file generated via python-docx with all auto-detected sections, headings, paragraphs, tables, and code blocks
+- [x] **DOCX-02**: Cover page includes: client name, report name, version, date, client logo, company logo
+- [x] **DOCX-03**: Primary and accent colors applied consistently to headings, table headers, and accent elements — using run-level formatting (not style mutation)
+- [x] **DOCX-04**: Header/footer on all pages with page numbers; cover page uses different first-page header with dual logos
 - [ ] **DOCX-05**: Table of contents inserted at document start (auto-updateable TOC field in Word)
 
 ### PDF Output
@@ -110,10 +110,10 @@
 | CONT-07 | Phase 1 | Pending |
 | CONT-08 | Phase 3 | Pending |
 | CONT-09 | Phase 3 | Pending |
-| DOCX-01 | Phase 1 | Pending |
-| DOCX-02 | Phase 1 | Pending |
-| DOCX-03 | Phase 1 | Pending |
-| DOCX-04 | Phase 1 | Pending |
+| DOCX-01 | Phase 1 | Complete |
+| DOCX-02 | Phase 1 | Complete |
+| DOCX-03 | Phase 1 | Complete |
+| DOCX-04 | Phase 1 | Complete |
 | DOCX-05 | Phase 2 | Pending |
 | PDF-01 | Phase 2 | Pending |
 | PDF-02 | Phase 2 | Pending |
