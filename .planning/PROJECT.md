@@ -40,12 +40,14 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 
 ## Context
 
-- **Existing skill:** `pbi:docs` (or `pbi:docs` equivalent) lives in `.claude/skills/` and already produces detailed Markdown documentation from PBIP projects. That MD output is the primary input here.
-- **Skill location:** Claude Code skill — `skill.md` + `agents.md` in `~/.claude/skills/pbi-docgen/`
+- **Shipped:** v1.0 MVP (2026-04-02) — complete pipeline from intake to dual DOCX+PDF output with EN/FR language support
+- **Codebase:** ~1,347 Python LOC in `scripts/` (md_parser, utils, content_generator, docx_builder, pdf_builder, generate.py); 6 EN + 6 FR Jinja2 prompt templates; FR glossary + Fowler + Grévisse reference files
+- **Existing skill:** `pbi:docs` lives in `.claude/skills/` and produces detailed Markdown from PBIP projects — that MD is this skill's primary input
+- **Skill location:** `~/.claude/skills/pbi-docgen/` (runtime) and `.claude/skills/pbi-docgen/` (repo)
 - **Target users:** Devesh uses this professionally; output goes to clients and internal teams. Polish matters.
-- **Language standards:** English prose reviewed against Fowler's *Modern English Usage* (H.W. Fowler); French against La Grévisse. Applied during prose generation, not post-hoc.
-- **python-docx:** Available in the Python ecosystem; headless browser (Playwright or Puppeteer) for HTML→PDF.
-- **Asset management:** Skill creates a `docsgen-assets/` subfolder where user drops logos, color config, and source MD files before generation begins.
+- **Language standards:** English prose against Fowler's *Modern English Usage*; French against La Grévisse + built-in PBI FR glossary (~20 terms). Applied during generation, not post-hoc.
+- **Asset management:** Skill creates `docsgen-assets/` subfolder where user drops logos, color config, and source MD files before generation begins.
+- **Known polish opportunities:** Logo placement in .docx header; parallel _prose_to_html() in pdf_builder could be unified with docx path (deferred to avoid refactor risk during Phase 2)
 
 ## Constraints
 
@@ -90,4 +92,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-02 after Phase 3 completion — milestone v1.0 complete*
+*Last updated: 2026-04-02 after v1.0 milestone completion*
