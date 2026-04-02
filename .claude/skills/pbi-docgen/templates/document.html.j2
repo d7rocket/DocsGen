@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ client_name }} - {{ report_name }}</title>
+<style>
+  :root {
+    --primary: {{ primary_color }};
+    --accent: {{ accent_color }};
+  }
+
+  @page {
+    size: Letter;
+    margin: 20mm 15mm;
+  }
+
+  @media print {
+    * {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+  }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    font-size: 11pt;
+  }
+
+  /* Cover page */
+  .cover-page {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 80px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cover-page .client-logo { max-width: 300px; max-height: 200px; margin-bottom: 40px; }
+  .cover-page h1 { color: var(--primary); font-size: 28pt; margin: 20px 0 10px; }
+  .cover-page .subtitle { color: var(--primary); font-size: 18pt; margin: 0 0 15px; }
+  .cover-page .meta { color: #666; font-size: 12pt; margin: 10px 0; }
+  .cover-page .company-logo-wrapper { margin-top: auto; align-self: flex-end; padding: 20px; }
+  .cover-page .company-logo { max-width: 120px; }
+
+  /* Table of Contents */
+  .toc { page-break-after: always; }
+  .toc h1 { color: var(--primary); font-size: 20pt; margin-bottom: 20px; }
+  .toc ul { list-style: none; padding: 0; }
+  .toc li { margin: 8px 0; font-size: 12pt; }
+  .toc a { color: var(--primary); text-decoration: none; border-bottom: 1px dotted var(--accent); padding-bottom: 2px; }
+  .toc a:hover { color: var(--accent); }
+
+  /* Section content */
+  h1 { color: var(--primary); font-size: 20pt; margin-top: 30px; border-bottom: 2px solid var(--primary); padding-bottom: 6px; }
+  h2 { color: var(--accent); font-size: 16pt; margin-top: 24px; }
+  h3 { color: var(--primary); font-size: 13pt; margin-top: 18px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; page-break-inside: avoid; margin: 16px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 10pt; }
+  td { padding: 8px 12px; border-bottom: 1px solid #ddd; font-size: 10pt; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+
+  /* Code blocks */
+  pre { background: #f2f2f2; padding: 12px 16px; border-radius: 4px; font-size: 9pt; line-height: 1.4; page-break-inside: avoid; overflow-x: auto; border: 1px solid #d0d0d0; }
+  code { font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; }
+
+  /* Paragraphs */
+  p { margin: 8px 0; }
+</style>
+</head>
+<body>
+
+  <!-- Cover Page (mirrors DOCX cover page layout per D-06) -->
+  <div class="cover-page">
+    {% if client_logo %}
+    <img src="{{ client_logo }}" class="client-logo" alt="{{ client_name }} logo">
+    {% endif %}
+    <h1>{{ client_name }}</h1>
+    <p class="subtitle">{{ report_name }}</p>
+    <p class="meta">Version {{ version }} | {{ date }}</p>
+    {% if company_logo %}
+    <div class="company-logo-wrapper">
+      <img src="{{ company_logo }}" class="company-logo" alt="Company logo">
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Table of Contents with clickable anchor links (D-04/D-05) -->
+  <div class="toc">
+    <h1>Table of Contents</h1>
+    <ul>
+    {% for section in sections %}
+      <li><a href="#{{ section.id }}">{{ section.label }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Sections loop (D-08) -->
+  {% for section in sections %}
+  <div class="section">
+    <h1 id="{{ section.id }}">{{ section.label }}</h1>
+    {{ section.html_content }}
+  </div>
+  {% endfor %}
+
+</body>
+</html>
