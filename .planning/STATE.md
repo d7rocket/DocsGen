@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-04-02T06:25:34.178Z"
+status: executing
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-04-02T10:47:53.259Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
   percent: 66
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with correct branding, language, and audience-appropriate depth -- in one skill invocation.
-**Current focus:** Phase 02 — PDF Pipeline + Output Integration (COMPLETE)
+**Current focus:** Phase 03 — french-language-polish
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-02
+Phase: 03 (french-language-polish) — EXECUTING
+Plan: 2 of 2
+Status: Plan 1 complete, executing Plan 2
+Last activity: 2026-04-02 -- Completed 03-01 FR content generation infrastructure
 
-Progress: [######░░░░] 66%
+Progress: [█████████░] 89%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [######░░░░] 66%
 | Phase 01 P05 | 5min | 2 tasks | 4 files |
 | Phase 02 P01 | 5min | 3 tasks | 3 files |
 | Phase 02 P02 | 15min | 3 tasks | 2 files |
+| Phase 03 P01 | 13min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Recent decisions affecting current work:
 - [Phase 02]: Parallel _prose_to_html() in pdf_builder rather than shared abstraction to avoid refactor risk
 - [Phase 02]: pdf_builder import inside try/except for graceful degradation without Playwright
 - [Phase 02]: Dual stdout protocol (docx path + pdf path or PDF_SKIPPED) for machine-readable SKILL.md capture
+- [Phase 03]: Dual template map pattern (SECTION_TEMPLATE_MAP + SECTION_TEMPLATE_MAP_FR) for clean EN/FR separation
+- [Phase 03]: Lazy-init module-level cache for FR glossary to avoid per-render disk reads
+- [Phase 03]: Glossary passed as explicit template variable via render_kwargs for visible data flow
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T05:45:00.000Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-04-02T10:46:45Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None

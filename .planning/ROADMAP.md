@@ -63,7 +63,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — FR content infrastructure: glossary, Grevisse rules, 6 FR templates, content_generator routing, Fowler hardening
+- [x] 03-01-PLAN.md — FR content infrastructure: glossary, Grevisse rules, 6 FR templates, content_generator routing, Fowler hardening
 - [ ] 03-02-PLAN.md — Language-aware output formatting: FR headings/dates/boilerplate in docx/pdf builders, SKILL.md FR gate removal
 
 ## Progress
@@ -75,4 +75,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Skill Core + Intake + DOCX | 5/5 | Complete | 2026-04-01 |
 | 2. PDF Pipeline + Output Integration | 2/2 | Complete | 2026-04-02 |
-| 3. French Language + Polish | 0/2 | Not started | - |
+| 3. French Language + Polish | 1/2 | In Progress|  |
