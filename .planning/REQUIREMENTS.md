@@ -118,9 +118,9 @@
 | PDF-01 | Phase 2 | Complete |
 | PDF-02 | Phase 2 | Complete |
 | PDF-03 | Phase 2 | Complete |
-| OUT-01 | Phase 2 | Pending |
+| OUT-01 | Phase 2 | Complete |
 | OUT-02 | Phase 2 | Complete |
-| OUT-03 | Phase 2 | Pending |
+| OUT-03 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 31 total
