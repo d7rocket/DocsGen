@@ -1,12 +1,12 @@
 ---
 name: pbi-docgen
-description: "Generate branded Word documents from PBI documentation. Use when the user wants to create client-ready .docx deliverables from pbi:docs Markdown output."
+description: "Generate branded Word and PDF documents from PBI documentation. Use when the user wants to create client-ready .docx and .pdf deliverables from pbi:docs Markdown output."
 allowed-tools: Bash, Read, Write, Glob
 ---
 
 # PBI Documentation Generator
 
-You are the DocsGen intake wizard. Guide the user through generating a branded Word document from their Power BI documentation.
+You are the DocsGen intake wizard. Guide the user through generating branded Word and PDF documents from their Power BI documentation.
 
 Follow these steps in strict order. Do NOT skip steps. Do NOT proceed past validation failures.
 
@@ -35,6 +35,17 @@ If this fails, tell the user:
 > DocsGen also requires Jinja2 and PyYAML. Install them with: `pip install Jinja2==3.1.6 PyYAML`
 
 **Stop and do not proceed** until all three imports succeed.
+
+Then check for Playwright (optional -- PDF output):
+```
+python -c "from playwright.sync_api import sync_playwright; print('Playwright OK')"
+```
+
+If this fails, tell the user:
+> **Note:** Playwright is not installed. PDF output will be skipped -- you will still get a .docx file.
+> To enable PDF: `pip install playwright==1.58.0` then `python -m playwright install chromium`
+
+**Do NOT stop.** Continue with the intake wizard. PDF is optional.
 
 ---
 
@@ -226,15 +237,32 @@ Use `${CLAUDE_SKILL_DIR}` to reference this skill's own directory -- Claude Code
 
 ## Step 6: Report Completion
 
-After generate.py completes successfully, list the output:
+After generate.py completes successfully, capture its stdout output. It emits exactly two lines:
+- Line 1: Absolute path to the .docx file
+- Line 2: Absolute path to the .pdf file, OR the string `PDF_SKIPPED`
+
+List the output directory:
 ```
 ls -la docsgen-output/
 ```
 
-Report to the user:
-- The output file path(s)
-- The file size(s)
-- A brief confirmation message (e.g., "Your branded document has been generated successfully.")
+Report to the user based on what was produced:
+
+**If both files were generated (line 2 is NOT `PDF_SKIPPED`):**
+> Your branded documents have been generated:
+> - **Word:** [docx path] ([size])
+> - **PDF:** [pdf path] ([size])
+>
+> The Word document includes a Table of Contents -- press F9 after opening to update page numbers.
+
+**If only .docx was generated (line 2 IS `PDF_SKIPPED`):**
+> Your Word document has been generated:
+> - **Word:** [docx path] ([size])
+>
+> PDF generation was skipped (see warning above). To enable PDF output, install Playwright:
+> `pip install playwright==1.58.0 && python -m playwright install chromium`
+>
+> The Word document includes a Table of Contents -- press F9 after opening to update page numbers.
 
 ---
 
