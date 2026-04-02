@@ -136,11 +136,6 @@ Ask: "What language should the document be written in? (EN or FR)"
 
 Accept only "EN" or "FR" (case-insensitive, normalize to uppercase).
 
-If the user selects "FR", warn them:
-> French language support is planned for Phase 3. Proceeding with English for now.
-
-Set the language value to "EN" in this case.
-
 ### Field 8: Audience type
 
 Ask the user to select the audience type. Explain the options:

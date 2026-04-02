@@ -16,6 +16,10 @@ from datetime import date
 
 from jinja2 import Environment, FileSystemLoader
 
+# Relative import for skill scripts
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from scripts.docx_builder import format_date, get_section_label, COVER_BOILERPLATE
+
 
 # Section order and labels (must match docx_builder.SECTION_ORDER)
 SECTION_ORDER = ['overview', 'sources', 'dataflows', 'mquery', 'datamodel', 'maintenance']
@@ -191,13 +195,17 @@ def _render_html(sections: dict, config: dict) -> str:
 
     accent_color = config.get('accent_color', '#4A90D9')
 
+    # Language-aware section labels and date (D-05, Pitfall 3)
+    language = config.get('language', 'EN')
+
     # Build sections list in display order with HTML content
     sections_list = []
     for section_id in SECTION_ORDER:
         if section_id not in sections:
             continue
         section_data = sections[section_id]
-        label = section_data.get('label', section_id.title())
+        # Override label with language-appropriate heading (D-05, Pitfall 3)
+        label = get_section_label(section_id, language)
         prose = section_data.get('prose', '')
         html_content = _prose_to_html(prose, accent_color) if prose else ''
         sections_list.append({
@@ -215,13 +223,17 @@ def _render_html(sections: dict, config: dict) -> str:
     if config.get('company_logo') and os.path.isfile(config['company_logo']):
         company_logo = _to_file_uri(config['company_logo'])
 
+    boilerplate = COVER_BOILERPLATE.get(language, COVER_BOILERPLATE['EN'])
+
     return template.render(
         primary_color=config.get('primary_color', '#1B365D'),
         accent_color=accent_color,
         client_name=config.get('client_name', ''),
         report_name=config.get('report_name', ''),
         version=config.get('version', '1.0'),
-        date=date.today().strftime('%B %d, %Y'),
+        date=format_date(date.today(), language),
+        lang='fr' if language == 'FR' else 'en',
+        toc_heading=boilerplate['toc_heading'],
         client_logo=client_logo,
         company_logo=company_logo,
         sections=sections_list,

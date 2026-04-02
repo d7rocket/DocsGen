@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
 <meta charset="UTF-8">
 <title>{{ client_name }} - {{ report_name }}</title>
@@ -91,7 +91,7 @@
 
   <!-- Table of Contents with clickable anchor links (D-04/D-05) -->
   <div class="toc">
-    <h1>Table of Contents</h1>
+    <h1>{{ toc_heading }}</h1>
     <ul>
     {% for section in sections %}
       <li><a href="#{{ section.id }}">{{ section.label }}</a></li>
