@@ -2,15 +2,27 @@
 set -e
 
 REPO_RAW="https://raw.githubusercontent.com/d7rocket/DocsGen/master"
-SKILL_DIR="$HOME/.claude/skills/pbi-docgen"
-CMD_DIR="$HOME/.claude/commands"
+
+# Parse --project flag
+PROJECT_MODE=false
+for arg in "$@"; do
+  [[ "$arg" == "--project" ]] && PROJECT_MODE=true
+done
+
+if $PROJECT_MODE; then
+  SKILL_DIR=".claude/skills/pbi-docgen"
+  CMD_DIR=".claude/commands"
+  echo "Installing pbi-docgen skill (project-level)..."
+else
+  SKILL_DIR="$HOME/.claude/skills/pbi-docgen"
+  CMD_DIR="$HOME/.claude/commands"
+  echo "Installing pbi-docgen skill (user-level)..."
+fi
 
 # Helper: download a skill file from GitHub
 download() {
   curl -sL "$REPO_RAW/.claude/skills/pbi-docgen/$1" -o "$SKILL_DIR/$1"
 }
-
-echo "Installing pbi-docgen skill..."
 
 # Create directory structure
 echo "Creating directories..."
@@ -63,7 +75,16 @@ echo -e "\033[32m========================================\033[0m"
 echo -e "\033[32m pbi-docgen skill installed successfully!\033[0m"
 echo -e "\033[32m========================================\033[0m"
 echo ""
+if $PROJECT_MODE; then
+  echo "Installed to: $SKILL_DIR"
+  echo "Scope: this project only"
+else
+  echo "Installed to: $SKILL_DIR"
+  echo "Scope: all Claude Code sessions"
+fi
+echo ""
 echo "Usage: Type /pbi-docgen in Claude Code"
 echo ""
-echo "One-liner install:"
-echo "  curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | bash"
+echo "One-liners:"
+echo "  User:    curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | bash"
+echo "  Project: curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | bash -s -- --project"

@@ -12,6 +12,10 @@ Takes the Markdown output from the `pbi:docs` skill and generates:
 
 ## Install
 
+### User install (recommended)
+
+Available in all your Claude Code sessions.
+
 **Mac / Linux / WSL:**
 ```bash
 curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | bash
@@ -22,7 +26,25 @@ curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | 
 irm https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.ps1 | iex
 ```
 
-This installs the skill to `~/.claude/skills/pbi-docgen/`, registers the `/pbi-docgen` command in Claude Code, and installs all Python dependencies.
+Installs to `~/.claude/skills/pbi-docgen/` and `~/.claude/commands/`.
+
+### Project install
+
+Available only within the current project directory — useful for team repos where you want to commit the skill alongside the project.
+
+**Mac / Linux / WSL:**
+```bash
+curl -sL https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.sh | bash -s -- --project
+```
+
+**Windows (PowerShell):**
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/d7rocket/DocsGen/master/install.ps1'))) -Project
+```
+
+Installs to `.claude/skills/pbi-docgen/` and `.claude/commands/` in the current directory.
+
+Both modes install all Python dependencies and register the `/pbi-docgen` command in Claude Code.
 
 ## Usage
 
