@@ -136,6 +136,7 @@ def main(config_path: str) -> None:
         config["client_name"],
         config["report_name"],
         config["audience"],
+        config.get("language", "EN"),
     )
     elapsed = time.time() - start
     print(f"  Content generated in {elapsed:.1f}s", file=sys.stderr)

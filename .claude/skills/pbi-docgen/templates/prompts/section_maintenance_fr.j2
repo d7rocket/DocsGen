@@ -1,0 +1,27 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 6 : Depannage et maintenance pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+
+Documentez les informations operationnelles. Couvrez :
+- Les parametres de configuration et leur fonction
+- Les problemes connus et les etapes de depannage
+- Les procedures de maintenance (calendriers d'actualisation, surveillance)
+- Les parametres propres a l'environnement
+
+Si des parametres sont listes, presentez-les dans un tableau :
+TABLE:
+| Parametre | Valeur | Description |
+| ... | ... | ... |
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 6" ou toute numerotation. Produisez des paragraphes de texte brut.

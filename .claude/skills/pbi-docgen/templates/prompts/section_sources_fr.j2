@@ -1,0 +1,26 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 2 : Systemes sources et architecture pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+
+Decrivez les sources de donnees, les connexions et la configuration de la passerelle. Couvrez :
+- Chaque source de donnees (type, emplacement, methode de connexion)
+- La configuration de la passerelle si documentee
+- Les modes d'authentification et les calendriers d'actualisation
+
+Si le contenu source contient des tableaux avec les details de connexion, conservez ces donnees structurees. Produisez les tableaux au format suivant :
+TABLE:
+| Colonne1 | Colonne2 | Colonne3 |
+| val1 | val2 | val3 |
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 2" ou toute numerotation. Produisez des paragraphes de texte brut.

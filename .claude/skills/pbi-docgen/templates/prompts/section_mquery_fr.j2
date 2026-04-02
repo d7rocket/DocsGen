@@ -1,0 +1,37 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 4 : Logique metier M Query pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+**Public :** {{ audience }}
+
+{% if audience == "client" %}
+Redigez un resume en francais clair de ce que fait chaque requete M en termes metier.
+N'incluez PAS de code M brut. Expliquez les transformations comme des operations metier
+(par exemple, "filtre les donnees de vente pour l'exercice fiscal en cours" et non "Table.SelectRows(Source, each [Year] >= 2024)").
+Regroupez les requetes apparentees. Concentrez-vous sur ce que les transformations accomplissent pour l'activite.
+{% else %}
+Pour chaque requete M, fournissez :
+1. Un resume en une phrase de l'objectif metier
+2. Le code M annote avec des commentaires en francais expliquant chaque etape significative
+3. Les dependances envers d'autres requetes ou parametres
+
+Formatez les blocs de code avec les marqueurs CODE_BLOCK :
+CODE_BLOCK:
+```
+// code M annote ici
+```
+
+Ce marqueur indique au generateur de document d'utiliser un formatage code (Courier New, fond gris).
+{% endif %}
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 4" ou toute numerotation. Produisez des paragraphes de texte brut.

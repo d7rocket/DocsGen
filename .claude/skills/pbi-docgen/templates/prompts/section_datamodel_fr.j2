@@ -1,0 +1,27 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 5 : Modele de donnees pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+
+Decrivez la structure du modele de donnees. Couvrez :
+- Les tables principales et leur fonction
+- Les relations importantes entre tables (avec la cardinalite si documentee)
+- Les colonnes calculees et mesures notables (DAX) avec des explications en francais
+- Les patrons de conception du modele (schema en etoile, flocon, etc.) si apparents
+
+Si le contenu source liste des tables, presentez-les dans un tableau structure :
+TABLE:
+| Nom de la table | Fonction | Nombre de lignes | Colonnes cles |
+| ... | ... | ... | ... |
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 5" ou toute numerotation. Produisez des paragraphes de texte brut.
