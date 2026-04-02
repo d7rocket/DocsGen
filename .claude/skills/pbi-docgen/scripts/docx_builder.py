@@ -14,6 +14,7 @@ import re
 import sys
 from datetime import date
 
+import yaml
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor, Cm, Emu
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -26,6 +27,66 @@ from docx.oxml import parse_xml, OxmlElement
 # Relative import for skill scripts
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from scripts.utils import parse_hex_color, ensure_directory
+
+
+# --- Language-aware date formatting (D-06, Pattern 3) ---
+# Uses month-name dict instead of locale.setlocale() (anti-pattern: platform-dependent, thread-unsafe)
+FR_MONTHS = {
+    1: 'janvier', 2: 'fevrier', 3: 'mars', 4: 'avril',
+    5: 'mai', 6: 'juin', 7: 'juillet', 8: 'aout',
+    9: 'septembre', 10: 'octobre', 11: 'novembre', 12: 'decembre',
+}
+
+
+def format_date(d: date, language: str) -> str:
+    """Format date per language: FR='le 2 avril 2026', EN='April 02, 2026'."""
+    if language == "FR":
+        day = '1er' if d.day == 1 else str(d.day)
+        return f"le {day} {FR_MONTHS[d.month]} {d.year}"
+    return d.strftime('%B %d, %Y')
+
+
+# --- Cover page boilerplate translations (D-07, Pattern 5) ---
+COVER_BOILERPLATE = {
+    'EN': {
+        'version_prefix': 'Version',
+        'prepared_for': 'Prepared for',
+        'confidential': 'Confidential',
+        'toc_heading': 'Table of Contents',
+    },
+    'FR': {
+        'version_prefix': 'Version',
+        'prepared_for': 'Prepare pour',
+        'confidential': 'Confidentiel',
+        'toc_heading': 'Table des matieres',
+    },
+}
+
+
+# --- Section heading map loader and label getter (D-05, Pattern 4) ---
+_HEADING_MAP = None
+
+
+def _load_heading_map():
+    global _HEADING_MAP
+    if _HEADING_MAP is None:
+        map_path = os.path.normpath(
+            os.path.join(os.path.dirname(__file__), '..', 'references', 'section_heading_map.yaml')
+        )
+        with open(map_path, 'r', encoding='utf-8') as f:
+            _HEADING_MAP = yaml.safe_load(f)
+    return _HEADING_MAP
+
+
+def get_section_label(section_id: str, language: str) -> str:
+    """Get section heading label in the appropriate language."""
+    heading_map = _load_heading_map()
+    for section in heading_map.get('sections', []):
+        if section['id'] == section_id:
+            if language == 'FR':
+                return section.get('label_fr', section['label'])
+            return section['label']
+    return section_id.title()
 
 
 # Ordered list of sections — document renders in this sequence.
@@ -197,13 +258,23 @@ def _build_cover_page(doc: Document, config: dict, primary_color: str) -> None:
     # Spacing
     doc.add_paragraph('')
 
-    # Version and date — 12pt, grey, centered
+    # Version and date — 12pt, grey, centered (language-aware per D-06/D-07)
+    language = config.get('language', 'EN')
+    boilerplate = COVER_BOILERPLATE.get(language, COVER_BOILERPLATE['EN'])
+    date_str = format_date(date.today(), language)
     version_para = doc.add_paragraph()
     version_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    version_text = f"Version {config.get('version', '1.0')} | {date.today().strftime('%B %d, %Y')}"
+    version_text = f"{boilerplate['version_prefix']} {config.get('version', '1.0')} | {date_str}"
     version_run = version_para.add_run(version_text)
     version_run.font.size = Pt(12)
     version_run.font.color.rgb = RGBColor(0x66, 0x66, 0x66)
+
+    # Prepared for line
+    prep_para = doc.add_paragraph()
+    prep_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    prep_run = prep_para.add_run(f"{boilerplate['prepared_for']} {config.get('client_name', '')}")
+    prep_run.font.size = Pt(12)
+    prep_run.font.color.rgb = RGBColor(0x66, 0x66, 0x66)
 
     # Push company logo toward bottom with spacing
     for _ in range(8):
@@ -544,8 +615,12 @@ def build_docx(sections: dict, config: dict) -> str:
     # Build cover page (first section)
     _build_cover_page(doc, config, primary_color)
 
+    # Language-aware TOC and section headings (D-05/D-07)
+    language = config.get('language', 'EN')
+    boilerplate = COVER_BOILERPLATE.get(language, COVER_BOILERPLATE['EN'])
+
     # NEW: TOC page (D-01/D-02/D-03)
-    _add_colored_heading(doc, 'Table of Contents', 1, primary_color)
+    _add_colored_heading(doc, boilerplate['toc_heading'], 1, primary_color)
     _insert_toc_field(doc)
     doc.add_page_break()
 
@@ -557,7 +632,8 @@ def build_docx(sections: dict, config: dict) -> str:
         if section_id not in sections:
             continue
         section_data = sections[section_id]
-        label = section_data.get('label', section_id.title())
+        # Override label with language-appropriate heading (D-05, Pitfall 3)
+        label = get_section_label(section_id, language)
         prose = section_data.get('prose', '')
 
         # Section heading — level 1, primary color
