@@ -2,13 +2,13 @@
 
 Wires together md_parser, content_generator, and docx_builder into a single
 invocation. Reads a JSON config file and executes the full pipeline:
-parse source Markdown -> generate section content -> build branded DOCX.
+parse source Markdown -> generate section content -> build branded DOCX + PDF.
 
 Usage:
     python generate.py <config.json>
 
-All progress messages go to stderr. Only the final output path goes to stdout,
-so SKILL.md can capture it cleanly.
+All progress messages go to stderr. Output paths go to stdout (two lines:
+docx path, then pdf path or PDF_SKIPPED), so SKILL.md can capture them cleanly.
 """
 
 import sys
@@ -53,16 +53,40 @@ def check_dependencies() -> bool:
     return all_ok
 
 
+def _report_completion(docx_path: str, pdf_path: str | None) -> None:
+    """Print completion report to stderr and output paths to stdout (D-14, OUT-03).
+
+    stderr: Human-readable summary with file sizes.
+    stdout: Machine-readable paths for SKILL.md capture.
+      Line 1: absolute path to .docx
+      Line 2: absolute path to .pdf, or 'PDF_SKIPPED' if PDF generation failed.
+    """
+    docx_size = os.path.getsize(docx_path)
+    print(f"\nGeneration complete!", file=sys.stderr)
+    print(f"  DOCX: {docx_path} ({docx_size:,} bytes)", file=sys.stderr)
+
+    if pdf_path:
+        pdf_size = os.path.getsize(pdf_path)
+        print(f"  PDF:  {pdf_path} ({pdf_size:,} bytes)", file=sys.stderr)
+    else:
+        print(f"  PDF:  SKIPPED (see warning above)", file=sys.stderr)
+
+    # stdout: machine-readable output for SKILL.md
+    print(docx_path)
+    print(pdf_path if pdf_path else "PDF_SKIPPED")
+
+
 def main(config_path: str) -> None:
-    """Execute the full DocsGen pipeline: parse -> generate content -> build DOCX.
+    """Execute the full DocsGen pipeline: parse -> generate content -> build DOCX + PDF.
 
     Args:
         config_path: Path to the JSON configuration file.
 
-    Pipeline stages (per D-21):
+    Pipeline stages (per D-21, D-12):
         1. Parse source Markdown files into structured sections
         2. Generate professional prose for each section via LLM
         3. Build branded Word document from generated content
+        4. Build branded PDF from HTML template via Playwright (graceful failure)
     """
     # Step 1: Check dependencies
     if not check_dependencies():
@@ -91,8 +115,8 @@ def main(config_path: str) -> None:
     # Step 4: Ensure output directory
     ensure_directory(config["output_dir"])
 
-    # Stage 1/3: Parse Markdown
-    print("Stage 1/3: Parsing source Markdown...", file=sys.stderr)
+    # Stage 1/4: Parse Markdown
+    print("Stage 1/4: Parsing source Markdown...", file=sys.stderr)
     parsed = parse_markdown_sources(config["source_files"])
     print(f"  Found {len(parsed)} sections: {', '.join(parsed.keys())}", file=sys.stderr)
 
@@ -104,8 +128,8 @@ def main(config_path: str) -> None:
         )
         sys.exit(1)
 
-    # Stage 2/3: Generate content
-    print("Stage 2/3: Generating section content...", file=sys.stderr)
+    # Stage 2/4: Generate content
+    print("Stage 2/4: Generating section content...", file=sys.stderr)
     start = time.time()
     sections = generate_all_sections(
         parsed,
@@ -116,14 +140,26 @@ def main(config_path: str) -> None:
     elapsed = time.time() - start
     print(f"  Content generated in {elapsed:.1f}s", file=sys.stderr)
 
-    # Stage 3/3: Build DOCX
-    print("Stage 3/3: Building Word document...", file=sys.stderr)
+    # Stage 3/4: Build DOCX
+    print("Stage 3/4: Building Word document...", file=sys.stderr)
     output_path = build_docx(sections, config)
-    file_size = os.path.getsize(output_path)
-    print(f"\nComplete! Output: {output_path} ({file_size:,} bytes)", file=sys.stderr)
 
-    # Print output path to stdout (for SKILL.md to capture)
-    print(output_path)
+    # Stage 4/4: Build PDF (D-12, graceful failure per D-10/D-11)
+    pdf_path = None
+    try:
+        print("Stage 4/4: Building PDF document...", file=sys.stderr)
+        from scripts.pdf_builder import build_pdf
+        pdf_path = build_pdf(sections, config, output_path)
+    except Exception as e:
+        print(f"\nWarning: PDF generation failed: {e}", file=sys.stderr)
+        print(f"  DOCX output delivered: {output_path}", file=sys.stderr)
+        print(
+            "  To enable PDF: pip install playwright==1.58.0 && python -m playwright install chromium",
+            file=sys.stderr,
+        )
+
+    # Completion report (D-14, OUT-03)
+    _report_completion(output_path, pdf_path)
 
 
 if __name__ == "__main__":
