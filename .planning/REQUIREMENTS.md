@@ -34,7 +34,7 @@
 - [x] **CONT-05**: Section 5 — Data model / SSAS: generated from model/table/relationship documentation
 - [x] **CONT-06**: Section 6 — Troubleshooting, parameters & maintenance: generated from parameters and operational notes
 - [x] **CONT-07**: English prose follows Fowler's *Modern English Usage* guidelines (clear, direct, no padding)
-- [ ] **CONT-08**: French prose follows La Grévisse guidelines (correct register, PBI-specific FR terminology applied via glossary)
+- [x] **CONT-08**: French prose follows La Grévisse guidelines (correct register, PBI-specific FR terminology applied via glossary)
 - [ ] **CONT-09**: Section headings, dates, and metadata formatted per selected language
 
 ### DOCX Output
@@ -108,7 +108,7 @@
 | CONT-05 | Phase 1 | Complete |
 | CONT-06 | Phase 1 | Complete |
 | CONT-07 | Phase 1 | Complete |
-| CONT-08 | Phase 3 | Pending |
+| CONT-08 | Phase 3 | Complete |
 | CONT-09 | Phase 3 | Pending |
 | DOCX-01 | Phase 1 | Complete |
 | DOCX-02 | Phase 1 | Complete |

@@ -1,0 +1,21 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 1 : Apercu du projet pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+
+Redigez un apercu professionnel de ce projet Power BI. Couvrez :
+- Ce que fait le projet et son objectif metier
+- Les principales sources de donnees a un niveau general
+- Le public vise et les decisions que le rapport permet de prendre
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 1" ou toute numerotation. Produisez des paragraphes de texte brut.

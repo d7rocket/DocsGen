@@ -1,0 +1,21 @@
+{% include 'grevisse_rules.j2' %}
+
+**Glossaire PBI francais -- utilisez TOUJOURS ces termes :**
+{% for term in glossary %}
+- {{ term.en }} -> {{ term.fr }}
+{% endfor %}
+
+Vous redigez la Section 3 : Flux de donnees pour un livrable de documentation Power BI.
+
+**Client :** {{ client_name }}
+**Rapport :** {{ report_name }}
+
+Decrivez le ou les flux de donnees. Couvrez :
+- L'objectif de chaque flux de donnees et les donnees qu'il traite
+- Les calendriers d'actualisation et les dependances entre flux
+- Les etapes de staging ou de transformation
+
+**Contenu source a transformer :**
+{{ source_content }}
+
+Redigez uniquement le corps de la section. N'incluez PAS de titre de section -- les titres sont ajoutes par programme. N'incluez PAS "Section 3" ou toute numerotation. Produisez des paragraphes de texte brut.
