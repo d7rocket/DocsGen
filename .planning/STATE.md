@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 01-05-PLAN.md (Phase 1 complete)
-last_updated: "2026-04-01T21:00:00.000Z"
-last_activity: 2026-04-01
+status: verifying
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-04-02T05:14:49.921Z"
+last_activity: 2026-04-02
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 5
+  total_plans: 7
   completed_plans: 5
   percent: 33
 ---
@@ -27,8 +27,8 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 Phase: 01 (Skill Core + Intake + DOCX) — COMPLETE
 Plan: 5 of 5 complete (all waves done)
-Status: Phase 1 complete, ready for Phase 2
-Last activity: 2026-04-01 -- Phase 01 Plan 05 complete, end-to-end verified
+Status: Phase complete — ready for verification
+Last activity: 2026-04-02
 
 Progress: [###░░░░░░░] 33%
 
@@ -57,6 +57,7 @@ Progress: [###░░░░░░░] 33%
 | Phase 01 P03 | 2m | 2 tasks | 8 files |
 | Phase 01 P04 | 2min | 1 task | 1 file |
 | Phase 01 P05 | 5min | 2 tasks | 4 files |
+| Phase 02 P01 | 5min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Run-level RGBColor exclusively for heading colors; NEW parse_xml per cell for XML shading
 - [Phase 01]: generate.py uses stderr for progress, stdout for output path -- clean SKILL.md capture
 - [Phase 01]: Logo placement approved but noted for improvement in Phase 2 polish
+- [Phase 02]: SDT XML TOC field injection pattern for Word TOC (python-docx issue #36)
+- [Phase 02]: CSS custom properties (--primary/--accent) for brand colors in HTML template
+- [Phase 02]: Parallel _prose_to_html() in pdf_builder rather than shared abstraction to avoid refactor risk
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T21:00:00.000Z
-Stopped at: Completed 01-05-PLAN.md (Phase 1 complete)
+Last session: 2026-04-02T05:14:49.918Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None

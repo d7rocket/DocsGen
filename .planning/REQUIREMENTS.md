@@ -43,18 +43,18 @@
 - [x] **DOCX-02**: Cover page includes: client name, report name, version, date, client logo, company logo
 - [x] **DOCX-03**: Primary and accent colors applied consistently to headings, table headers, and accent elements — using run-level formatting (not style mutation)
 - [x] **DOCX-04**: Header/footer on all pages with page numbers; cover page uses different first-page header with dual logos
-- [ ] **DOCX-05**: Table of contents inserted at document start (auto-updateable TOC field in Word)
+- [x] **DOCX-05**: Table of contents inserted at document start (auto-updateable TOC field in Word)
 
 ### PDF Output
 
-- [ ] **PDF-01**: Jinja2 HTML template renders structured content with full CSS layout matching document brand colors
-- [ ] **PDF-02**: PDF generated from HTML via Playwright (headless Chromium) — not wkhtmltopdf
-- [ ] **PDF-03**: CSS is print-first: explicit `print-color-adjust: exact`, embedded fonts, page break control for tables and code blocks
+- [x] **PDF-01**: Jinja2 HTML template renders structured content with full CSS layout matching document brand colors
+- [x] **PDF-02**: PDF generated from HTML via Playwright (headless Chromium) — not wkhtmltopdf
+- [x] **PDF-03**: CSS is print-first: explicit `print-color-adjust: exact`, embedded fonts, page break control for tables and code blocks
 
 ### Output
 
 - [ ] **OUT-01**: Both `.docx` and `.pdf` produced in a single skill invocation
-- [ ] **OUT-02**: Output files named predictably: `[ClientName]_[ReportName]_v[Version]_[YYYY-MM-DD].docx/.pdf`
+- [x] **OUT-02**: Output files named predictably: `[ClientName]_[ReportName]_v[Version]_[YYYY-MM-DD].docx/.pdf`
 - [ ] **OUT-03**: Skill reports completion with output file paths and file sizes
 
 ## v2 Requirements
@@ -114,12 +114,12 @@
 | DOCX-02 | Phase 1 | Complete |
 | DOCX-03 | Phase 1 | Complete |
 | DOCX-04 | Phase 1 | Complete |
-| DOCX-05 | Phase 2 | Pending |
-| PDF-01 | Phase 2 | Pending |
-| PDF-02 | Phase 2 | Pending |
-| PDF-03 | Phase 2 | Pending |
+| DOCX-05 | Phase 2 | Complete |
+| PDF-01 | Phase 2 | Complete |
+| PDF-02 | Phase 2 | Complete |
+| PDF-03 | Phase 2 | Complete |
 | OUT-01 | Phase 2 | Pending |
-| OUT-02 | Phase 2 | Pending |
+| OUT-02 | Phase 2 | Complete |
 | OUT-03 | Phase 2 | Pending |
 
 **Coverage:**

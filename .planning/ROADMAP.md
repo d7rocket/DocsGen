@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Skill Core + Intake + DOCX | 5/5 | Complete | 2026-04-01 |
-| 2. PDF Pipeline + Output Integration | 0/2 | Not started | - |
+| 2. PDF Pipeline + Output Integration | 0/2 | Planned    |  |
 | 3. French Language + Polish | 0/1 | Not started | - |
