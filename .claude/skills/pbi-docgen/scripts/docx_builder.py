@@ -21,7 +21,7 @@ from docx.enum.section import WD_SECTION_START
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn, nsdecls
-from docx.oxml import parse_xml
+from docx.oxml import parse_xml, OxmlElement
 
 # Relative import for skill scripts
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -458,6 +458,60 @@ def _parse_and_add_prose(doc: Document, prose_text: str, primary_color: str,
         i += 1
 
 
+def _insert_toc_field(doc):
+    """Insert a Table of Contents field into the document body (D-01/D-02/D-03).
+
+    Creates a Structured Document Tag (SDT) wrapping a TOC field instruction:
+    TOC \\o "1-3" \\h \\z \\u
+
+    Word displays 'Update this field' on open; user presses F9 to refresh.
+    The \\o "1-3" switch collects Heading 1-3 entries.
+    The \\h switch creates hyperlinks, \\z hides tab leaders in web view,
+    \\u uses applied paragraph outline levels.
+    """
+    sdt = OxmlElement('w:sdt')
+    sdtpr = OxmlElement('w:sdtPr')
+    docpartobj = OxmlElement('w:docPartObj')
+    docpartgallery = OxmlElement('w:docPartGallery')
+    docpartgallery.set(qn('w:val'), 'Table of Contents')
+    docpartunique = OxmlElement('w:docPartUnique')
+    docpartunique.set(qn('w:val'), 'true')
+    docpartobj.append(docpartgallery)
+    docpartobj.append(docpartunique)
+    sdtpr.append(docpartobj)
+    sdt.append(sdtpr)
+
+    sdtcontent = OxmlElement('w:sdtContent')
+
+    # TOC field paragraph: begin -> instrText -> separate -> end
+    p = OxmlElement('w:p')
+    r = OxmlElement('w:r')
+
+    fldchar_begin = OxmlElement('w:fldChar')
+    fldchar_begin.set(qn('w:fldCharType'), 'begin')
+
+    instrtext = OxmlElement('w:instrText')
+    instrtext.set(qn('xml:space'), 'preserve')
+    instrtext.text = 'TOC \\o "1-3" \\h \\z \\u'
+
+    fldchar_separate = OxmlElement('w:fldChar')
+    fldchar_separate.set(qn('w:fldCharType'), 'separate')
+
+    fldchar_end = OxmlElement('w:fldChar')
+    fldchar_end.set(qn('w:fldCharType'), 'end')
+
+    r.append(fldchar_begin)
+    r.append(instrtext)
+    r.append(fldchar_separate)
+    r.append(fldchar_end)
+    p.append(r)
+    sdtcontent.append(p)
+    sdt.append(sdtcontent)
+
+    # Append SDT to document body
+    doc.element.body.append(sdt)
+
+
 def build_docx(sections: dict, config: dict) -> str:
     """Build a complete branded DOCX document from generated section content.
 
@@ -489,6 +543,11 @@ def build_docx(sections: dict, config: dict) -> str:
 
     # Build cover page (first section)
     _build_cover_page(doc, config, primary_color)
+
+    # NEW: TOC page (D-01/D-02/D-03)
+    _add_colored_heading(doc, 'Table of Contents', 1, primary_color)
+    _insert_toc_field(doc)
+    doc.add_page_break()
 
     # Set up headers and footers for body section
     _setup_headers_footers(doc, config)
