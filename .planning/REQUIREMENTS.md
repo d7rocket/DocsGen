@@ -53,9 +53,9 @@
 
 ### Output
 
-- [ ] **OUT-01**: Both `.docx` and `.pdf` produced in a single skill invocation
+- [x] **OUT-01**: Both `.docx` and `.pdf` produced in a single skill invocation
 - [x] **OUT-02**: Output files named predictably: `[ClientName]_[ReportName]_v[Version]_[YYYY-MM-DD].docx/.pdf`
-- [ ] **OUT-03**: Skill reports completion with output file paths and file sizes
+- [x] **OUT-03**: Skill reports completion with output file paths and file sizes
 
 ## v2 Requirements
 

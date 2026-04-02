@@ -13,7 +13,7 @@ DocsGen transforms structured PBI Markdown documentation into polished, branded 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Skill Core + Intake + DOCX** - Skill scaffolding, intake wizard, MD parsing, English content generation, and branded .docx output
-- [ ] **Phase 2: PDF Pipeline + Output Integration** - HTML/PDF generation via Playwright, TOC, and unified dual-output invocation
+- [x] **Phase 2: PDF Pipeline + Output Integration** - HTML/PDF generation via Playwright, TOC, and unified dual-output invocation
 - [ ] **Phase 3: French Language + Polish** - French prose with La Grevisse + PBI glossary, language-aware formatting, Fowler EN enforcement hardened
 
 ## Phase Details
@@ -49,8 +49,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — DOCX TOC field, Jinja2 HTML template, and Playwright PDF builder module
-- [ ] 02-02-PLAN.md — Pipeline wiring (generate.py Stage 4) and SKILL.md dual-output update
+- [x] 02-01-PLAN.md — DOCX TOC field, Jinja2 HTML template, and Playwright PDF builder module
+- [x] 02-02-PLAN.md — Pipeline wiring (generate.py Stage 4) and SKILL.md dual-output update
 
 ### Phase 3: French Language + Polish
 **Goal**: User can generate documentation in French with correct PBI terminology and formal register, and both EN and FR output meet a professional quality bar suitable for direct client delivery
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Skill Core + Intake + DOCX | 5/5 | Complete | 2026-04-01 |
-| 2. PDF Pipeline + Output Integration | 0/2 | Planned    |  |
+| 2. PDF Pipeline + Output Integration | 2/2 | Complete | 2026-04-02 |
 | 3. French Language + Polish | 0/1 | Not started | - |

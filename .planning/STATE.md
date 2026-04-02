@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-04-02T05:14:49.921Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-04-02T05:45:00.000Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 7
-  completed_plans: 5
-  percent: 33
+  completed_plans: 7
+  percent: 66
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-01)
 
 **Core value:** Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with correct branding, language, and audience-appropriate depth -- in one skill invocation.
-**Current focus:** Phase 01 — Skill Core + Intake + DOCX
+**Current focus:** Phase 02 — PDF Pipeline + Output Integration (COMPLETE)
 
 ## Current Position
 
-Phase: 01 (Skill Core + Intake + DOCX) — COMPLETE
-Plan: 5 of 5 complete (all waves done)
+Phase: 02 (PDF Pipeline + Output Integration) — COMPLETE
+Plan: 2 of 2 complete (all waves done)
 Status: Phase complete — ready for verification
 Last activity: 2026-04-02
 
-Progress: [###░░░░░░░] 33%
+Progress: [######░░░░] 66%
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Progress: [###░░░░░░░] 33%
 | Phase 01 P04 | 2min | 1 task | 1 file |
 | Phase 01 P05 | 5min | 2 tasks | 4 files |
 | Phase 02 P01 | 5min | 3 tasks | 3 files |
+| Phase 02 P02 | 15min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Recent decisions affecting current work:
 - [Phase 02]: SDT XML TOC field injection pattern for Word TOC (python-docx issue #36)
 - [Phase 02]: CSS custom properties (--primary/--accent) for brand colors in HTML template
 - [Phase 02]: Parallel _prose_to_html() in pdf_builder rather than shared abstraction to avoid refactor risk
+- [Phase 02]: pdf_builder import inside try/except for graceful degradation without Playwright
+- [Phase 02]: Dual stdout protocol (docx path + pdf path or PDF_SKIPPED) for machine-readable SKILL.md capture
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T05:14:49.918Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-04-02T05:45:00.000Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
