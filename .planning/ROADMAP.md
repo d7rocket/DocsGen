@@ -60,10 +60,11 @@ Plans:
   1. User selects FR at intake and receives a document with French prose that uses correct Power BI French terminology (e.g., "mesure" not "measure", "requete" not "query") and formal register per La Grevisse
   2. Section headings, dates, metadata, and boilerplate text render in the selected language -- no EN/FR mixing within a document
   3. English output prose is hardened against common violations of Fowler's guidelines (no needless passives, no nominalization padding, no corporate filler)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md — FR content infrastructure: glossary, Grevisse rules, 6 FR templates, content_generator routing, Fowler hardening
+- [ ] 03-02-PLAN.md — Language-aware output formatting: FR headings/dates/boilerplate in docx/pdf builders, SKILL.md FR gate removal
 
 ## Progress
 
@@ -74,4 +75,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Skill Core + Intake + DOCX | 5/5 | Complete | 2026-04-01 |
 | 2. PDF Pipeline + Output Integration | 2/2 | Complete | 2026-04-02 |
-| 3. French Language + Polish | 0/1 | Not started | - |
+| 3. French Language + Polish | 0/2 | Not started | - |
