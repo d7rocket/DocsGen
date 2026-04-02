@@ -2,3 +2,6 @@ docsgen-test/
 docsgen-output/
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/
+.claude/worktrees/
