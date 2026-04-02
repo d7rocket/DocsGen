@@ -24,12 +24,13 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 - [x] M Query section depth is audience-driven — *Validated Phase 1*
 - [x] Color scheme applied to headings, tables, accents throughout document — *Validated Phase 1*
 - [x] Client and company logos incorporated on cover page and headers — *Validated Phase 1*
+- [x] Language-aware prose: French follows La Grévisse with PBI FR glossary — *Validated Phase 3*
+- [x] English prose hardened against Fowler violations (explicit forbidden phrases, substitution examples) — *Validated Phase 3*
+- [x] Section headings, dates, metadata formatted per selected language (EN and FR) — *Validated Phase 3*
 
 ### Active
 
-- [ ] Language-aware prose: French follows La Grévisse — *Phase 3*
-- [ ] English prose hardened against Fowler violations (passive, nominalization, filler) — *Phase 3*
-- [ ] Section headings, dates, metadata formatted per selected language — *Phase 3*
+*(All milestone requirements validated — see Validated section)*
 
 ### Out of Scope
 
@@ -66,6 +67,10 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 | Word XML TOC field (`TOC \o "1-3" \h \z \u`) | Auto-updateable TOC without Word template dependency | Validated Phase 2 |
 | PDF TOC via HTML anchor links | Playwright preserves `<a href="#id">` as clickable PDF links; no post-processing needed | Validated Phase 2 |
 | Playwright failure → deliver .docx only, exit 0 | Graceful degradation; user always gets something usable | Validated Phase 2 |
+| Separate FR prompt templates (not EN injection) | FR and EN templates tune independently; EN templates stay untouched | Validated Phase 3 |
+| Built-in fr_glossary.yaml in references/ | Ships with skill, no user action required; ~20 core PBI terms | Validated Phase 3 |
+| FR date format "le 2 avril 2026" via month-name dict | Locale-independent (locale.setlocale() is thread-unsafe on Windows) | Validated Phase 3 |
+| docx_builder helpers imported by pdf_builder | DRY — format_date, get_section_label, COVER_BOILERPLATE defined once | Validated Phase 3 |
 
 ## Evolution
 
@@ -85,4 +90,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-02 after Phase 2 completion*
+*Last updated: 2026-04-02 after Phase 3 completion — milestone v1.0 complete*
