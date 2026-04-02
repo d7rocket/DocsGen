@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-02)
 Phase: —
 Plan: —
 Status: Milestone v1.0 complete — ready for next milestone
-Last activity: 2026-04-02
+Last activity: 2026-04-02 - Completed quick task 260402-wdu: Create install.sh and install.ps1 for pbi-docgen skill
 
 Progress: [█████████░] 89%
 
@@ -91,6 +91,12 @@ Recent decisions affecting current work:
 ### Pending Todos
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260402-wdu | Create install.sh and install.ps1 for pbi-docgen skill with one-liner curl/irm pattern | 2026-04-02 | b3bb4ba | [260402-wdu-create-install-sh-and-install-ps1-for-pb](./quick/260402-wdu-create-install-sh-and-install-ps1-for-pb/) |
 
 ### Blockers/Concerns
 
