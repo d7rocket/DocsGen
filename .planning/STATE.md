@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-04-02T10:47:53.259Z"
+status: verifying
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-04-02T10:55:02.553Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 9
-  completed_plans: 8
-  percent: 66
+  completed_plans: 9
+  percent: 89
 ---
 
 # Project State
@@ -27,8 +27,8 @@ See: .planning/PROJECT.md (updated 2026-04-01)
 
 Phase: 03 (french-language-polish) — EXECUTING
 Plan: 2 of 2
-Status: Plan 1 complete, executing Plan 2
-Last activity: 2026-04-02 -- Completed 03-01 FR content generation infrastructure
+Status: Phase complete — ready for verification
+Last activity: 2026-04-02
 
 Progress: [█████████░] 89%
 
@@ -60,6 +60,7 @@ Progress: [█████████░] 89%
 | Phase 02 P01 | 5min | 3 tasks | 3 files |
 | Phase 02 P02 | 15min | 3 tasks | 2 files |
 | Phase 03 P01 | 13min | 2 tasks | 11 files |
+| Phase 03 P02 | 3min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -85,6 +86,7 @@ Recent decisions affecting current work:
 - [Phase 03]: Dual template map pattern (SECTION_TEMPLATE_MAP + SECTION_TEMPLATE_MAP_FR) for clean EN/FR separation
 - [Phase 03]: Lazy-init module-level cache for FR glossary to avoid per-render disk reads
 - [Phase 03]: Glossary passed as explicit template variable via render_kwargs for visible data flow
+- [Phase 03]: Shared language helpers (format_date, get_section_label, COVER_BOILERPLATE) in docx_builder.py; pdf_builder imports them for DRY
 
 ### Pending Todos
 
@@ -98,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T10:46:45Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-04-02T10:55:02.550Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None

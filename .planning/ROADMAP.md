@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Skill Core + Intake + DOCX** - Skill scaffolding, intake wizard, MD parsing, English content generation, and branded .docx output
 - [x] **Phase 2: PDF Pipeline + Output Integration** - HTML/PDF generation via Playwright, TOC, and unified dual-output invocation
-- [ ] **Phase 3: French Language + Polish** - French prose with La Grevisse + PBI glossary, language-aware formatting, Fowler EN enforcement hardened
+- [x] **Phase 3: French Language + Polish** - French prose with La Grevisse + PBI glossary, language-aware formatting, Fowler EN enforcement hardened (completed 2026-04-02)
 
 ## Phase Details
 
@@ -64,7 +64,7 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — FR content infrastructure: glossary, Grevisse rules, 6 FR templates, content_generator routing, Fowler hardening
-- [ ] 03-02-PLAN.md — Language-aware output formatting: FR headings/dates/boilerplate in docx/pdf builders, SKILL.md FR gate removal
+- [x] 03-02-PLAN.md — Language-aware output formatting: FR headings/dates/boilerplate in docx/pdf builders, SKILL.md FR gate removal
 
 ## Progress
 
@@ -75,4 +75,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Skill Core + Intake + DOCX | 5/5 | Complete | 2026-04-01 |
 | 2. PDF Pipeline + Output Integration | 2/2 | Complete | 2026-04-02 |
-| 3. French Language + Polish | 1/2 | In Progress|  |
+| 3. French Language + Polish | 2/2 | Complete   | 2026-04-02 |
