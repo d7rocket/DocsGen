@@ -21,6 +21,18 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from scripts.docx_builder import format_date, get_section_label, COVER_BOILERPLATE
 
 
+# --- Inline Markdown regex (mirrors docx_builder.INLINE_MD_RE) ---
+INLINE_MD_RE = re.compile(
+    r'\*\*\*(.+?)\*\*\*'          # ***bold+italic***
+    r'|___(.+?)___'                # ___bold+italic___
+    r'|\*\*(.+?)\*\*'             # **bold**
+    r'|__(.+?)__'                  # __bold__
+    r'|\*(.+?)\*'                  # *italic*
+    r'|(?:(?<=\s)|(?<=^))_(.+?)_(?=[\s.,;:!?\)]|$)'  # _italic_ (word-boundary aware)
+    r'|`([^`]+)`'                  # `code`
+)
+
+
 # Section order and labels (must match docx_builder.SECTION_ORDER)
 SECTION_ORDER = ['overview', 'sources', 'dataflows', 'mquery', 'datamodel', 'maintenance']
 
@@ -37,6 +49,43 @@ def slugify(text: str) -> str:
 def _to_file_uri(path: str) -> str:
     """Convert local file path to file:/// URI for HTML img src (Pitfall 1)."""
     return Path(path).resolve().as_uri()
+
+
+def _inline_md_to_html(text: str) -> str:
+    """Convert inline Markdown to HTML tags, with HTML-escaping for safety.
+
+    HTML-escapes the input first (prevents XSS), then applies regex
+    substitutions for bold, italic, bold+italic, and inline code.
+    Asterisks and backticks are NOT HTML-special characters, so
+    html.escape() leaves them intact for the regex to process.
+
+    Args:
+        text: Raw text possibly containing inline Markdown syntax.
+
+    Returns:
+        HTML string with inline formatting tags applied.
+    """
+    import html as html_module
+    escaped = html_module.escape(text)
+
+    def _replacer(m):
+        if m.group(1) is not None:
+            return f'<strong><em>{m.group(1)}</em></strong>'
+        if m.group(2) is not None:
+            return f'<strong><em>{m.group(2)}</em></strong>'
+        if m.group(3) is not None:
+            return f'<strong>{m.group(3)}</strong>'
+        if m.group(4) is not None:
+            return f'<strong>{m.group(4)}</strong>'
+        if m.group(5) is not None:
+            return f'<em>{m.group(5)}</em>'
+        if m.group(6) is not None:
+            return f'<em>{m.group(6)}</em>'
+        if m.group(7) is not None:
+            return f'<code>{m.group(7)}</code>'
+        return m.group(0)
+
+    return INLINE_MD_RE.sub(_replacer, escaped)
 
 
 def _prose_to_html(prose_text: str, accent_color: str) -> str:
@@ -93,7 +142,7 @@ def _prose_to_html(prose_text: str, accent_color: str) -> str:
                 output.append(_table_lines_to_html(table_lines))
             else:
                 for tl in table_lines:
-                    output.append(f'<p>{html_module.escape(tl.strip())}</p>')
+                    output.append(f'<p>{_inline_md_to_html(tl.strip())}</p>')
             continue
 
         # CODE_BLOCK: marker
@@ -134,7 +183,7 @@ def _prose_to_html(prose_text: str, accent_color: str) -> str:
             continue
 
         # Regular paragraph
-        output.append(f'<p>{html_module.escape(line.strip())}</p>')
+        output.append(f'<p>{_inline_md_to_html(line.strip())}</p>')
         i += 1
 
     return '\n'.join(output)
@@ -161,7 +210,7 @@ def _table_lines_to_html(table_lines: list[str]) -> str:
     # First row is header
     html_parts.append('<thead><tr>')
     for cell in data_rows[0]:
-        html_parts.append(f'<th>{html_module.escape(cell)}</th>')
+        html_parts.append(f'<th>{_inline_md_to_html(cell)}</th>')
     html_parts.append('</tr></thead>')
 
     # Remaining rows are body
@@ -170,7 +219,7 @@ def _table_lines_to_html(table_lines: list[str]) -> str:
         for row in data_rows[1:]:
             html_parts.append('<tr>')
             for cell in row:
-                html_parts.append(f'<td>{html_module.escape(cell)}</td>')
+                html_parts.append(f'<td>{_inline_md_to_html(cell)}</td>')
             html_parts.append('</tr>')
         html_parts.append('</tbody>')
 
