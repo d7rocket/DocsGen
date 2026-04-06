@@ -29,6 +29,108 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from scripts.utils import parse_hex_color, ensure_directory
 
 
+# --- Inline Markdown regex (compiled once at module level for performance) ---
+# Priority order: bold+italic (***), bold (**), italic (*), word-boundary italic (_),
+# bold (__), bold+italic (___), inline code (backtick).
+INLINE_MD_RE = re.compile(
+    r'\*\*\*(.+?)\*\*\*'          # ***bold+italic***
+    r'|___(.+?)___'                # ___bold+italic___
+    r'|\*\*(.+?)\*\*'             # **bold**
+    r'|__(.+?)__'                  # __bold__
+    r'|\*(.+?)\*'                  # *italic*
+    r'|(?:(?<=\s)|(?<=^))_(.+?)_(?=[\s.,;:!?\)]|$)'  # _italic_ (word-boundary aware)
+    r'|`([^`]+)`'                  # `code`
+)
+
+
+def _parse_inline_runs(paragraph, text: str, code_style=None) -> None:
+    """Parse inline Markdown in *text* and add formatted runs to *paragraph*.
+
+    Handles: ***bold+italic***, **bold**, *italic*, _italic_ (word-boundary),
+    ``code``, and plain text segments.
+
+    Args:
+        paragraph: A python-docx Paragraph object to append runs to.
+        text: The source text possibly containing inline Markdown.
+        code_style: Optional Code paragraph style (used for font settings on code spans).
+    """
+    last_end = 0
+    for m in INLINE_MD_RE.finditer(text):
+        # Add any plain text before this match
+        if m.start() > last_end:
+            paragraph.add_run(text[last_end:m.start()])
+
+        # Determine which group matched
+        if m.group(1) is not None:
+            # ***bold+italic***
+            run = paragraph.add_run(m.group(1))
+            run.font.bold = True
+            run.font.italic = True
+        elif m.group(2) is not None:
+            # ___bold+italic___
+            run = paragraph.add_run(m.group(2))
+            run.font.bold = True
+            run.font.italic = True
+        elif m.group(3) is not None:
+            # **bold**
+            run = paragraph.add_run(m.group(3))
+            run.font.bold = True
+        elif m.group(4) is not None:
+            # __bold__
+            run = paragraph.add_run(m.group(4))
+            run.font.bold = True
+        elif m.group(5) is not None:
+            # *italic*
+            run = paragraph.add_run(m.group(5))
+            run.font.italic = True
+        elif m.group(6) is not None:
+            # _italic_ (word-boundary)
+            run = paragraph.add_run(m.group(6))
+            run.font.italic = True
+        elif m.group(7) is not None:
+            # `code`
+            run = paragraph.add_run(m.group(7))
+            run.font.name = 'Courier New'
+            run.font.size = Pt(9)
+            run.font.color.rgb = RGBColor(0x33, 0x33, 0x33)
+
+        last_end = m.end()
+
+    # Add any remaining plain text after the last match
+    if last_end < len(text):
+        paragraph.add_run(text[last_end:])
+
+
+def _add_inline_md_paragraph(doc, line: str, code_style=None):
+    """Create a paragraph from *line*, converting inline Markdown to Word runs.
+
+    Handles leading ``- `` as a bullet indicator (uses 'List Bullet' style if
+    available, otherwise strips the dash and uses a normal paragraph).
+
+    Args:
+        doc: The python-docx Document instance.
+        line: A single line of text, possibly with inline Markdown.
+        code_style: Optional Code paragraph style for code span formatting.
+
+    Returns:
+        The created Paragraph object.
+    """
+    is_bullet = line.startswith('- ')
+    content = line[2:] if is_bullet else line
+
+    if is_bullet:
+        # Try to use 'List Bullet' style; fall back to normal paragraph
+        try:
+            para = doc.add_paragraph(style='List Bullet')
+        except KeyError:
+            para = doc.add_paragraph()
+    else:
+        para = doc.add_paragraph()
+
+    _parse_inline_runs(para, content, code_style)
+    return para
+
+
 # --- Language-aware date formatting (D-06, Pattern 3) ---
 # Uses month-name dict instead of locale.setlocale() (anti-pattern: platform-dependent, thread-unsafe)
 FR_MONTHS = {
@@ -380,17 +482,20 @@ def _parse_table_block(lines: list[str]) -> list[list[str]]:
     return rows
 
 
-def _add_table(doc: Document, rows: list[list[str]], primary_color: str, accent_color: str) -> None:
+def _add_table(doc: Document, rows: list[list[str]], primary_color: str, accent_color: str,
+               code_style=None) -> None:
     """Add a formatted Word table from parsed row data.
 
     Header row: white text on primary brand color background.
     Body rows: alternating white and light accent tint (D-16).
+    Cell text is parsed for inline Markdown formatting.
 
     Args:
         doc: The python-docx Document instance.
         rows: List of rows from _parse_table_block.
         primary_color: Primary brand color hex.
         accent_color: Accent brand color hex.
+        code_style: Optional Code paragraph style for inline code spans.
     """
     if not rows:
         return
@@ -407,7 +512,9 @@ def _add_table(doc: Document, rows: list[list[str]], primary_color: str, accent_
         for col_idx, cell_text in enumerate(row_data):
             if col_idx < num_cols:
                 cell = row.cells[col_idx]
-                cell.text = cell_text
+                cell.text = ''  # clear default
+                para = cell.paragraphs[0]
+                _parse_inline_runs(para, cell_text, code_style)
                 if row_idx == 0:
                     # Header row — white text on primary color background
                     _set_cell_background(cell, primary_color)
@@ -469,7 +576,7 @@ def _parse_and_add_prose(doc: Document, prose_text: str, primary_color: str,
                     table_lines.append(tl)
                 i += 1
             rows = _parse_table_block(table_lines)
-            _add_table(doc, rows, primary_color, accent_color)
+            _add_table(doc, rows, primary_color, accent_color, code_style)
             continue
 
         # Pipe-delimited table without explicit TABLE: marker
@@ -480,11 +587,11 @@ def _parse_and_add_prose(doc: Document, prose_text: str, primary_color: str,
                 i += 1
             if len(table_lines) >= 2:
                 rows = _parse_table_block(table_lines)
-                _add_table(doc, rows, primary_color, accent_color)
+                _add_table(doc, rows, primary_color, accent_color, code_style)
             else:
                 # Not a real table, add as normal text
                 for tl in table_lines:
-                    doc.add_paragraph(tl.strip())
+                    _add_inline_md_paragraph(doc, tl.strip(), code_style)
             continue
 
         # CODE_BLOCK: marker
@@ -524,8 +631,8 @@ def _parse_and_add_prose(doc: Document, prose_text: str, primary_color: str,
             i += 1
             continue
 
-        # Regular text paragraph
-        doc.add_paragraph(line.strip())
+        # Regular text paragraph (inline Markdown -> Word runs)
+        _add_inline_md_paragraph(doc, line.strip(), code_style)
         i += 1
 
 
