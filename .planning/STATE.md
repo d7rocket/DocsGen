@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-04-02)
 Phase: —
 Plan: —
 Status: Milestone v1.0 complete — ready for next milestone
-Last activity: 2026-04-02 - Completed quick task 260402-wdu: Create install.sh and install.ps1 for pbi-docgen skill
+Last activity: 2026-04-06 - Completed quick task 260406-g8e: Fix Markdown formatting leaking into Word output
 
 Progress: [█████████░] 89%
 
@@ -97,6 +97,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260402-wdu | Create install.sh and install.ps1 for pbi-docgen skill with one-liner curl/irm pattern | 2026-04-02 | b3bb4ba | [260402-wdu-create-install-sh-and-install-ps1-for-pb](./quick/260402-wdu-create-install-sh-and-install-ps1-for-pb/) |
+| 260406-g8e | Fix Markdown formatting leaking into Word output -- inline MD parser + no-MD prompt rules | 2026-04-06 | e20e975 | [260406-g8e-fix-markdown-formatting-leaking-into-wor](./quick/260406-g8e-fix-markdown-formatting-leaking-into-wor/) |
 
 ### Blockers/Concerns
 
@@ -106,6 +107,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T10:55:02.550Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-04-06T07:49:00Z
+Stopped at: Completed quick task 260406-g8e: Fix Markdown formatting leaking into Word output
 Resume file: None
