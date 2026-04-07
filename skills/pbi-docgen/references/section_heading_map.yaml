@@ -3,19 +3,25 @@
 sections:
   - id: overview
     label: "Project Overview"
+    label_fr: "Apercu du projet"
     keywords: ["overview", "summary", "introduction", "about"]
   - id: sources
     label: "Source Systems & Architecture"
+    label_fr: "Systemes sources et architecture"
     keywords: ["data source", "gateway", "connection", "source system", "architecture"]
   - id: dataflows
     label: "Dataflows"
+    label_fr: "Flux de donnees"
     keywords: ["dataflow", "data flow", "refresh", "pipeline"]
   - id: mquery
     label: "M Query Business Logic"
+    label_fr: "Logique metier M Query"
     keywords: ["m query", "power query", "m code", "query", "transformation"]
   - id: datamodel
     label: "Data Model"
+    label_fr: "Modele de donnees"
     keywords: ["data model", "ssas", "relationship", "table", "measure", "dax", "column"]
   - id: maintenance
     label: "Troubleshooting & Maintenance"
+    label_fr: "Depannage et maintenance"
     keywords: ["parameter", "troubleshooting", "maintenance", "configuration", "setting"]

@@ -1,0 +1,28 @@
+**Writing quality rules (Fowler's Modern English Usage) -- HARD CONSTRAINTS:**
+
+Before writing each sentence, verify it does not violate any rule below. If you catch yourself about to violate a rule, rewrite the sentence before outputting it.
+
+1. **ACTIVE VOICE ONLY.** "The report filters data" -- NEVER "Data is filtered by the report" or "Data is being processed."
+   - Forbidden patterns: "is [verb]ed by", "are [verb]ed by", "was [verb]ed by", "is being [verb]ed"
+
+2. **NO NOMINALIZATION.** Use verbs, not noun forms of verbs.
+   - FORBIDDEN: "the utilization of", "the implementation of", "the analysis of", "the configuration of", "the execution of"
+   - CORRECT: "using", "implementing", "analyzing", "configuring", "executing"
+
+3. **NO CORPORATE FILLER.** The following words are BANNED -- never use them under any circumstance:
+   leverage, synergy, optimize, utilize, facilitate, streamline, robust, scalable, holistic, best-in-class, cutting-edge, world-class, mission-critical, state-of-the-art, next-generation, enterprise-grade, end-to-end, actionable, impactful
+
+4. **MAX 25 WORDS per sentence.** Count before outputting. If over 25, split into two sentences.
+
+5. **BE DIRECT.** State what something DOES, not what it "aims to", "seeks to", "is designed to", or "helps to" do.
+   - FORBIDDEN: "aims to", "seeks to", "is designed to", "helps to", "serves to", "strives to"
+   - CORRECT: just state the action directly
+
+6. **CONCRETE NOUNS.** "The table stores customer records" -- NEVER "The data storage mechanism maintains entity information."
+   - FORBIDDEN: "mechanism", "paradigm", "framework" (when a specific noun exists), "solution", "approach"
+
+7. **PLAIN CONNECTIVES.** "because" not "due to the fact that." "so" not "as a consequence of." "but" not "however it should be noted that."
+
+8. **NO MARKDOWN FORMATTING.** Do NOT use Markdown syntax in your output. No asterisks for bold/italic (**, *), no underscores for emphasis (_), no backtick code spans. Write plain prose only. The document builder handles all formatting programmatically. If you need to emphasize a term, just write it naturally in the sentence. For inline code or technical names, just write them plainly (e.g., write  Sales_Amount  not  `Sales_Amount`). Bullet lists using a leading dash and space (- item) are acceptable as content structure signals.
+
+These rules are MANDATORY. Violating any rule makes the output unusable.
