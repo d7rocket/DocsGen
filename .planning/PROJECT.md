@@ -30,7 +30,12 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 
 ### Active
 
-*(All milestone requirements validated — see Validated section)*
+- [x] Fenced code blocks with interior blank lines render correctly in both DOCX and PDF — *Validated Phase 4*
+- [x] Unified Markdown parser (markdown-it-py) drives both DOCX token-walker and PDF HTML rendering — *Validated Phase 4*
+- [x] Playwright PDF generation uses `domcontentloaded` (no hang) — *Validated Phase 4*
+- [x] DigitalOcean-inspired HTML template: left-accent code blocks, distinct heading hierarchy, clean tables — *Validated Phase 4*
+- [x] All 12 prompt templates emit standard Markdown (no `TABLE:`/`CODE_BLOCK:`/`END_TABLE` markers) — *Validated Phase 4*
+- [x] DOCX headings use explicit font sizes: h1=20pt, h2=14pt, h3=12pt — *Validated Phase 4*
 
 ### Out of Scope
 
@@ -40,7 +45,7 @@ Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with c
 
 ## Context
 
-- **Shipped:** v1.0 MVP (2026-04-02) — complete pipeline from intake to dual DOCX+PDF output with EN/FR language support
+- **Shipped:** v1.0 MVP (2026-04-02) — complete pipeline from intake to dual DOCX+PDF output with EN/FR language support. Phase 4 complete (2026-04-07) — unified markdown-it-py parser, DigitalOcean HTML template, Playwright hang fix, standard Markdown prompts.
 - **Codebase:** ~1,347 Python LOC in `scripts/` (md_parser, utils, content_generator, docx_builder, pdf_builder, generate.py); 6 EN + 6 FR Jinja2 prompt templates; FR glossary + Fowler + Grévisse reference files
 - **Existing skill:** `pbi:docs` lives in `.claude/skills/` and produces detailed Markdown from PBIP projects — that MD is this skill's primary input
 - **Skill location:** `~/.claude/skills/pbi-docgen/` (runtime) and `.claude/skills/pbi-docgen/` (repo)
