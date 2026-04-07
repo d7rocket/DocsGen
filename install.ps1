@@ -38,6 +38,7 @@ Download-File "scripts\generate.py"
 Download-File "scripts\md_parser.py"
 Download-File "scripts\pdf_builder.py"
 Download-File "scripts\utils.py"
+Download-File "scripts\md_renderer.py"
 Download-File "templates\document.html.j2"
 Download-File "templates\prompts\fowler_rules.j2"
 Download-File "templates\prompts\grevisse_rules.j2"
@@ -62,7 +63,7 @@ Invoke-WebRequest -Uri "$RepoRaw/.claude/commands/pbi-docgen.md" -OutFile (Join-
 
 # Install Python dependencies
 Write-Host "Installing Python dependencies..."
-pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown PyYAML Pillow lxml
+pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown-it-py PyYAML Pillow lxml
 
 # Install Playwright Chromium browser
 Write-Host "Installing Playwright Chromium..."

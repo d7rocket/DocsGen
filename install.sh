@@ -41,6 +41,7 @@ download "scripts/generate.py"
 download "scripts/md_parser.py"
 download "scripts/pdf_builder.py"
 download "scripts/utils.py"
+download "scripts/md_renderer.py"
 download "templates/document.html.j2"
 download "templates/prompts/fowler_rules.j2"
 download "templates/prompts/grevisse_rules.j2"
@@ -65,7 +66,7 @@ curl -sL "$REPO_RAW/.claude/commands/pbi-docgen.md" -o "$CMD_DIR/pbi-docgen.md"
 
 # Install Python dependencies
 echo "Installing Python dependencies..."
-pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown PyYAML Pillow lxml
+pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown-it-py PyYAML Pillow lxml
 
 # Install Playwright Chromium browser
 echo "Installing Playwright Chromium..."

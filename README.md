@@ -6,9 +6,19 @@ A Claude Code skill that turns Power BI project documentation into polished, cli
 
 Takes the Markdown output from the `pbi:docs` skill and generates:
 - Branded `.docx` with your logo, colors, and typography
-- PDF via Playwright/Chromium
+- Unified Markdown parser (markdown-it-py) for consistent formatting across DOCX and PDF
+- DigitalOcean-inspired code block styling (left-accent border pattern)
+- Professional PDF output via Playwright/Chromium
 - English or French output per run
 - Audience-appropriate depth (executive, IT, client)
+
+## What's New in v1.0
+
+- **Unified parser:** markdown-it-py replaces hand-rolled `TABLE:`/`CODE_BLOCK:` markers for reliable Markdown rendering in both DOCX and PDF
+- **DigitalOcean-style code blocks:** left-accent border pattern in both Word and PDF output
+- **Playwright fix:** uses `wait_until="domcontentloaded"` to prevent hangs on PDF generation
+- **Standard Markdown prompts:** all 12 section templates now emit standard Markdown (headings, tables, fenced code) instead of custom markers
+- **Explicit heading sizes:** h1=20pt, h2=14pt, h3=12pt, h4=11pt for consistent document hierarchy
 
 ## Install
 
@@ -57,12 +67,13 @@ Both modes install all Python dependencies and register the `/pbi-docgen` comman
 
 - Claude Code CLI
 - Python 3.9+
+- Node.js (required by Playwright for PDF generation)
 - The install script handles all Python deps automatically
 
 ## Manual install (Python deps only)
 
 ```bash
-pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown PyYAML Pillow lxml
+pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown-it-py PyYAML Pillow lxml
 playwright install chromium
 ```
 
@@ -82,7 +93,8 @@ docsgen-assets/
 | Component | Technology |
 |-----------|------------|
 | DOCX generation | python-docx 1.2.0 |
-| HTML → PDF | Playwright 1.58.0 (Chromium) |
+| HTML to PDF | Playwright 1.58.0 (Chromium) |
+| Markdown parsing | markdown-it-py 4.0.0 |
 | Templating | Jinja2 3.1.6 |
 | Skill framework | Claude Code Skills |
 
