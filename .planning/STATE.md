@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: MVP
-status: complete
-stopped_at: Milestone v1.0 archived
-last_updated: "2026-04-02T00:00:00.000Z"
-last_activity: 2026-04-02
+status: executing
+stopped_at: "Completed Phase 04 PLAN execution"
+last_updated: "2026-04-07T10:57:00.000Z"
+last_activity: 2026-04-07 -- Phase 04 generation quality overhaul complete
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_phases: 4
+  completed_phases: 4
+  total_plans: 10
+  completed_plans: 10
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-02)
 
 **Core value:** Turn structured PBI Markdown docs into client-ready Word/PDF deliverables with correct branding, language, and audience-appropriate depth — in one skill invocation.
-**Current focus:** Planning next milestone
+**Current focus:** Phase 04 complete -- generation quality overhaul
 
 ## Current Position
 
-Phase: —
-Plan: —
-Status: Milestone v1.0 complete — ready for next milestone
-Last activity: 2026-04-06 - Completed quick task 260406-gmd: Fix inline Markdown leaking in PDF build
+Phase: 04 (generation-quality-overhaul) -- COMPLETE
+Plan: 1 of 1
+Status: Phase 04 complete
+Last activity: 2026-04-07 -- Completed Phase 04 PLAN (9 tasks, 34 files)
 
-Progress: [█████████░] 89%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [█████████░] 89%
 | Phase 02 P02 | 15min | 3 tasks | 2 files |
 | Phase 03 P01 | 13min | 2 tasks | 11 files |
 | Phase 03 P02 | 3min | 2 tasks | 10 files |
+| Phase 04 P01 | 22min | 9 tasks | 34 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,13 @@ Recent decisions affecting current work:
 - [Phase 03]: Lazy-init module-level cache for FR glossary to avoid per-render disk reads
 - [Phase 03]: Glossary passed as explicit template variable via render_kwargs for visible data flow
 - [Phase 03]: Shared language helpers (format_date, get_section_label, COVER_BOILERPLATE) in docx_builder.py; pdf_builder imports them for DRY
+- [Phase 04]: markdown-it-py (commonmark+table) as unified Markdown parser replacing hand-rolled TABLE:/CODE_BLOCK: marker parsers
+- [Phase 04]: Token-walker pattern in docx_builder over markdown-it-py tokens for fence, table, heading, paragraph, bullet_list
+- [Phase 04]: render_prose_html delegation in pdf_builder replaces _inline_md_to_html, _table_lines_to_html, _prose_to_html
+- [Phase 04]: wait_until domcontentloaded (not networkidle) to prevent Playwright hang on set_content()
+- [Phase 04]: DigitalOcean left-accent code block pattern in both DOCX (XML pBdr left_only) and PDF (CSS border-left)
+- [Phase 04]: Explicit heading font sizes in _add_colored_heading (h1=20pt, h2=14pt, h3=12pt, h4=11pt)
+- [Phase 04]: pbi:docs contract documented as reference file (skill lives outside repo)
 
 ### Pending Todos
 
@@ -108,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-06T08:02:00Z
-Stopped at: Completed quick task 260406-gmd: Fix inline Markdown leaking in PDF build
+Last session: 2026-04-07T10:57:00Z
+Stopped at: Completed Phase 04 PLAN execution (generation quality overhaul)
 Resume file: None
