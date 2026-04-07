@@ -67,7 +67,7 @@ pip install python-docx==1.2.0 Jinja2==3.1.6 playwright==1.58.0 markdown-it-py P
 
 # Install Playwright Chromium browser
 Write-Host "Installing Playwright Chromium..."
-playwright install chromium
+python -m playwright install chromium
 
 # Success banner
 Write-Host ""
